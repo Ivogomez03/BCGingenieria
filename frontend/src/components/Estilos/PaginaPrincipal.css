@@ -1,0 +1,299 @@
+* {
+    font-family: 'Roboto';
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
+    /*background: radial-gradient(circle at 50% 50%, #015486, #004a76, #004167, #013858, #022f4a, #03263c, #031d2f, #001522);
+*/
+    background: #01010A;
+}
+
+
+.container {
+
+    border-radius: 15px;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.seccion-medio {
+    position: relative;
+}
+
+/* navbar*/
+
+/* Estilos generales para el navbar */
+nav {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    /* Separación entre el logo y los botones */
+    align-items: center;
+    /* Espaciado interno */
+
+    /* Fondo oscuro */
+    color: #fff;
+    /* Texto blanco */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    position: relative;
+}
+
+/* Estilo del logo */
+nav h1 {
+    padding: 20px 0px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    /* Color blanco */
+    margin: 0;
+}
+
+/* Contenedor de los enlaces principales */
+.nav-links {
+    padding: 5px;
+    display: flex;
+    gap: 15px;
+    background-color: transparent;
+    border: 1px solid #333;
+    border-radius: 20px;
+    /* Espaciado uniforme entre botones */
+    transition: all 0.3s ease;
+}
+
+/* Botones del menú principal */
+.nav-links button {
+    color: #99999D;
+    /* Texto blanco */
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border: none;
+    gap: 2px;
+    padding: 8px 16px;
+    /* Espaciado interno */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    cursor: pointer;
+
+
+}
+
+.nav-links iconos-flecha-abajo {
+    font-size: 24;
+    color: #99999D
+}
+
+.nav-links button,
+.nav-links iconos-flecha-abajo {
+    transition: color ease 0.3s;
+}
+
+/* Hover en botones principales */
+.nav-links button:hover {
+
+    /* Fondo transparente */
+    color: #a37dfc;
+    /* Color violeta claro */
+}
+
+.nav-links iconos-flecha-abajo:hover {
+
+    /* Fondo transparente */
+    color: #a37dfc;
+    /* Color violeta claro */
+}
+
+/* Contenedor de autenticación */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 400;
+
+    /* Espaciado entre enlaces */
+}
+
+/* Botón "Sign In" */
+.auth-links .registrarse {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: 400;
+}
+
+.auth-links .registrarse:hover {
+    color: #a37dfc;
+    /* Violeta claro al hover */
+}
+
+/* Botón "Try Now" */
+.auth-links .iniciar-sesion {
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    width: 8rem;
+    color: white;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    /* Bordes redondeados */
+    padding: 12px 20px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-links .iniciar-sesion:hover {
+    opacity: 0.9;
+    /* Efecto sutil al hover */
+}
+
+
+/*seccion-medio*/
+.seccion-medio {
+    padding: 4rem 2rem;
+    text-align: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: white;
+}
+
+.seccion-medio h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.seccion-medio p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    color: #b8b8b8;
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+.seccion-medio .botones {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.seccion-medio button {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.seccion-medio .iniciate {
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    width: 12rem;
+    color: white;
+}
+
+.seccion-medio .explorar {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.seccion-medio button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+
+/* background */
+
+.background-circles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilo base para los círculos */
+.circle {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(128, 0, 255, 0.6) 0%, rgba(128, 0, 255, 0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+}
+
+/* Círculo central */
+.circle.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Círculos en las esquinas */
+.circle.top-left {
+    top: -200px;
+    left: -100px;
+}
+
+.circle.top-right {
+    top: -200px;
+    right: -100px;
+}
+
+.circle.bottom-left {
+    position: absolute;
+    bottom: -200px;
+    left: -100px;
+}
+
+.circle.bottom-right {
+    bottom: -200px;
+    right: -100px;
+}
+
+nav,
+.seccion-medio {
+    position: relative;
+    z-index: 3;
+}

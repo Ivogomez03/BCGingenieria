@@ -1,0 +1,86 @@
+.conteiner-panel-admin {
+    position: relative;
+    height: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1c112b;
+    z-index: 2;
+}
+
+.acciones-administrador {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+
+    margin-top: 2rem;
+    z-index: 2;
+}
+
+.cerrar-sesion-admin {
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    width: 8rem;
+    color: white;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    /* Bordes redondeados */
+    padding: 12px 20px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cerrar-sesion-admin:hover {
+    opacity: 0.9;
+    /* Efecto sutil al hover */
+}
+
+.boton-registrar-usuario {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    border-radius: 24px;
+    height: 4rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    width: 12rem;
+    color: white;
+}
+
+.boton-registrar-usuario:hover {
+
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+.titulo-bienvenido-admin {
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
