@@ -2,16 +2,14 @@ import './Estilos/PaginaPrincipal.css'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 export const PaginaPrincipal = () => {
     return (<>
-        <div className="background-circles">
-            <div className="circle center"></div>
-            <div className="circle top-left"></div>
-            <div className="circle top-right"></div>
-            <div className="circle bottom-left"></div>
-            <div className="circle bottom-right"></div>
-        </div>
+
         <div className="container">
             <nav>
-                <h1 className='bcg-icon'>BCGing</h1>
+
+
+                <img src="./public/BCG2.png" className="imagen-logo" alt="Logo BCG ingenieria" />
+
+
                 <div className='nav-links'>
                     <button>
                         Proyectos

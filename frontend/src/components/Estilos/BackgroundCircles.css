@@ -1,0 +1,49 @@
+/* background */
+
+.background-circles {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: #01010A;
+
+}
+
+/* Estilo base para los círculos */
+.circle {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(128, 0, 255, 0.6) 0%, rgba(128, 0, 255, 0) 70%);
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+}
+
+/* Círculo central */
+.circle.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Círculos en las esquinas */
+.circle.top-left {
+    top: -200px;
+    left: -100px;
+}
+
+.circle.top-right {
+    top: -200px;
+    right: -100px;
+}
+
+.circle.bottom-left {
+    position: absolute;
+    bottom: -200px;
+    left: -100px;
+}
+
+.circle.bottom-right {
+    bottom: -200px;
+    right: -100px;
+}
