@@ -4,11 +4,14 @@ import { BackGroundCircles } from './components/BackGroundCircles';
 import { useDesvanecer, useScroll } from './hooks/hooksContacto';
 import { Footer } from './components/Footer';
 import { PanelProyectos } from './components/PanelProyectos';
+import { LeasingSolar } from './components/LeasingSolar';
 import { useRef } from 'react';
-
+import { HashRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { Login } from './components/Login'
+import { Proyecto } from './components/Proyecto';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
-  const proyectosRef = useRef(null);
+
   const { mostrarContacto } = useScroll(contactoRef);
   const { shouldRender } = useDesvanecer({ mostrarContacto });
 
@@ -19,6 +22,7 @@ function App() {
       <BackGroundCircles />
       <PaginaPrincipal />
       <PanelProyectos />
+      <LeasingSolar />
 
 
       <div style={{ width: '100%', height: '100vh' }} ref={contactoRef}>
@@ -28,5 +32,17 @@ function App() {
     </>
   );
 }
+const MainApp = () => {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/home" element={<PaginaPrincipal />} />
+        <Route path="/proyecto" element={<Proyecto />} />
 
-export default App; 
+      </Routes>
+    </Router>
+  );
+}
+export default MainApp;

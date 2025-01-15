@@ -1,0 +1,28 @@
+{
+    "ComoFunciona": {
+        "duracion": [
+            "Se establece un período de leasing de 10 años, durante los cuales el cliente paga cuotas periódicas que cubren el costo del equipo, instalación, mantenimiento y otros servicios asociados."
+        ],
+        "propiedad": [
+            "Al terminar el plazo, los paneles solares pasan automáticamente a ser propiedad del cliente sin necesidad de un pago adicional. Se mantiene el cobro de un canon mínimo por mantenimiento de la comunidad solar. "
+        ],
+        "pagosPeriodicos": [
+            "Los pagos mensuales son diseñados para cubrir el costo total del sistema más los servicios y un margen de rentabilidad para los impulsores del proyecto, cooperativa y comuna para que puedan seguir desarrollando nuevos proyectos.",
+            "Los pagos mensuales se realizan conforme a la energía ahorrada por ser parte de la comunidad solar, un porcentaje previamente definido del ahorro va para el cliente y el resto para la cooperativa y comuna",
+            "Cuotas variables (basadas en el ahorro por la energía generada). Son variables porque varían en el tiempo según el precio de la energía, pero siempre se mantiene el mismo porcentaje fijo de ahorro previamente establecido para ambas partes."
+        ],
+        "responsabilidades": [
+            "Cooperativa: Mantenimiento, reparaciones y monitoreo de los paneles.",
+            "Arrendatario: Pago de las cuotas por el uso del sistema."
+        ],
+        "beneficios": [
+            "Comienza a ahorrar energía desde el primer día.",
+            "No necesita un pago inicial alto (o este puede ser reducido). Se ingresa al leasing con un pago inicial necesario en varios aspectos, en primer lugar para financiar parte del proyecto y lograr rentabilidad. A su vez si no se establece un pago mínimo sería de interés para toda la comunidad y no podría",
+            "Al final del contrato, es dueño de un sistema funcional con muchos años de vida útil restantes."
+        ],
+        "beneficiosCooperativa": [
+            "Genera ingresos sostenidos por un período largo.",
+            "Puede ofrecer servicios adicionales durante la vida del contrato, como monitoreo o actualizaciones tecnológicas."
+        ]
+    }
+}

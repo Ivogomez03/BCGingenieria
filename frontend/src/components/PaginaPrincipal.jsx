@@ -1,6 +1,12 @@
 import './Estilos/PaginaPrincipal.css'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { useNavigate } from 'react-router-dom';
 export const PaginaPrincipal = () => {
+    const navigate = useNavigate();
+
+    const goToLogin = () => {
+        navigate('/login');
+    };
     return (<>
 
         <div className="container">
@@ -30,7 +36,7 @@ export const PaginaPrincipal = () => {
                 </div>
                 <div className='auth-links'>
                     <button className='registrarse'>Registrarse</button>
-                    <button className='iniciar-sesion'> Iniciar sesión</button>
+                    <button className='iniciar-sesion' onClick={goToLogin}> Iniciar sesión</button>
                 </div>
             </nav>
             <section className='seccion-medio'>

@@ -1,0 +1,146 @@
+import { useId, useState } from "react";
+import { useCalculo } from "../hooks/calculoPaneles";
+
+const CalculoDePaneles = ({ onSiguiente }) => {
+    const consumoInputId = useId();
+    const { cantidadPaneles, consumo, handleChangeConsumoInput, handleCalcular } = useCalculo();
+
+    const handleNext = () => {
+        if (cantidadPaneles > 0) {
+            onSiguiente(cantidadPaneles, 7000); // Pasar cantidad de paneles y valor de KW al siguiente paso
+        } else {
+            alert("Por favor, calcula la cantidad de paneles primero.");
+        }
+    };
+
+    return (
+        <section>
+            <h1>Calculo de paneles necesarios</h1>
+            <p>Para saber cuántos paneles necesita, ingrese su consumo de los últimos 12 meses de luz.</p>
+            <label htmlFor={consumoInputId}>Consumo de los últimos 12 meses:</label>
+            <input
+                type="text"
+                id={consumoInputId}
+                onChange={handleChangeConsumoInput}
+                placeholder="Ingrese su consumo energético"
+                value={consumo}
+            />
+            <button onClick={handleCalcular}>Calcular</button>
+            {cantidadPaneles > 0 && <h2>Cantidad de paneles: {cantidadPaneles}</h2>}
+            <h3>El valor de un KW es de $7000 USD</h3>
+            <button onClick={handleNext}>Siguiente</button>
+        </section>
+    );
+};
+
+const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
+    const selectId = useId();
+    const [isTransferenciaEnPesos, setIsTransferenciaEnPesos] = useState(true);
+    const [monto, setMonto] = useState("");
+
+    const montoMinimo = valorKW;
+
+    const handleSelectChange = (e) => {
+        const newValue = e.target.value;
+        setIsTransferenciaEnPesos(newValue === "TRANSFERENCIABANCARIAENPESOS");
+    };
+
+    const handleInputChange = (e) => {
+        const newValue = e.target.value;
+
+        if (/^\d*\.?\d*$/.test(newValue)) {
+            setMonto(newValue);
+        }
+    };
+
+    const handleNext = () => {
+        if (monto >= montoMinimo) {
+            onSiguiente(monto, isTransferenciaEnPesos);
+        } else {
+            alert(`El monto mínimo a invertir es ${montoMinimo} USD.`);
+        }
+    };
+
+    return (
+        <section>
+            <h2>Tu monto máximo disponible a invertir es de: $6.721.000 o USD 6.294,77</h2>
+            <label htmlFor={selectId}>Selecciona el tipo de transferencia:</label>
+            <select name="select" id={selectId} onChange={handleSelectChange}>
+                <option value="TRANSFERENCIABANCARIAENPESOS">Transferencia Bancaria en Pesos</option>
+                <option value="TRANSFERENCIABANCARIAENDOLARES">Transferencia Bancaria en Dólares</option>
+            </select>
+            <div>
+                <span>{isTransferenciaEnPesos ? "ARS" : "USD"}</span>
+                <input
+                    type="text"
+                    placeholder={`Monto mínimo: ${montoMinimo} USD`}
+                    value={monto}
+                    onChange={handleInputChange}
+                />
+            </div>
+            <button onClick={handleNext}>Siguiente</button>
+        </section>
+    );
+};
+
+const ConfirmarInversion = ({ monto, isTransferenciaEnPesos }) => {
+    return (
+        <section>
+            <h1>Confirmación de Inversión</h1>
+            <h2>Inversión: {isTransferenciaEnPesos ? "ARS" : "USD"} {monto}</h2>
+            <p>Una vez confirmada tu inversión, podrás realizar el pago y ver su estado desde tu cuenta.</p>
+            <button>Confirmar</button>
+        </section>
+    );
+};
+
+export const Proyecto = () => {
+    const [etapa, setEtapa] = useState(1);
+    const [cantidadPaneles, setCantidadPaneles] = useState(0);
+    const [valorKW, setValorKW] = useState(7000);
+    const [monto, setMonto] = useState(0);
+    const [isTransferenciaEnPesos, setIsTransferenciaEnPesos] = useState(true);
+
+    const handleSiguiente = () => setEtapa(etapa + 1);
+    const handleAtras = () => setEtapa(etapa - 1);
+
+    const avanzarConPaneles = (paneles, valorKW) => {
+        setCantidadPaneles(paneles);
+        setValorKW(valorKW);
+        handleSiguiente();
+    };
+
+    const avanzarConMonto = (monto, isPesos) => {
+        setMonto(monto);
+        setIsTransferenciaEnPesos(isPesos);
+        handleSiguiente();
+    };
+
+    return (
+        <main>
+            <section>
+                <h1>Nombre del Proyecto</h1>
+                <h2>Descripción del proyecto</h2>
+                <div>
+                    <button onClick={() => setEtapa(1)}>1. Cálculo de paneles</button>
+                    <button onClick={() => setEtapa(2)}>2. Ingresa el monto</button>
+                    <button onClick={() => setEtapa(3)}>3. Confirma tu inversión</button>
+                </div>
+
+                {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} />}
+                {etapa === 2 && (
+                    <IngresaMonto
+                        panelesNecesarios={cantidadPaneles}
+                        valorKW={valorKW}
+                        onSiguiente={avanzarConMonto}
+                    />
+                )}
+                {etapa === 3 && (
+                    <ConfirmarInversion monto={monto} isTransferenciaEnPesos={isTransferenciaEnPesos} />
+                )}
+
+                {etapa > 1 && <button onClick={handleAtras}>Atrás</button>}
+            </section>
+        </main>
+    );
+};

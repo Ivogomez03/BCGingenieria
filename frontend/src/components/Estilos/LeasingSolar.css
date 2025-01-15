@@ -1,0 +1,91 @@
+.main-leasing-solar {
+    max-width: 100%;
+    max-height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+
+
+}
+
+.seccion-leasing-solar {
+    width: 50%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    padding: 40px 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.contenedor-titulo-leasing-solar h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 0.8s ease-out;
+    text-align: center;
+}
+
+.contenedor-titulo-leasing-solar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    gap: 1rem;
+}
+
+.contenedor-titulo-leasing-solar h1,
+.seccion-leasing-solar h2 {
+    font-size: 3rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 0.8s ease-out;
+    text-align: center;
+}
+
+
+.seccion-leasing-solar h2 {
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.contenedor-leasing-informacion h2 {
+    text-align: left;
+}
+
+.contenedor-leasing-informacion p {
+    font-size: medium;
+}
+
+.contenedor-leasing-informacion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.contenedor-leasing-informacion div {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
