@@ -1,6 +1,9 @@
 package com.example.backend.Services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import com.example.backend.DTO.AuthResponseDTO;
 import com.example.backend.DTO.LoginRequestDTO;
@@ -17,9 +20,16 @@ public class AuthService {
     @Autowired
     private final UsuarioGeneralDAO usuarioGeneralDAO;
     private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
 
     public AuthResponseDTO login(LoginRequestDTO request) {
-        return null;
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getNombreUsuario(), request.getContrasena()));
+        UserDetails usuarioGeneral = usuarioGeneralDAO.findByNombreUsuario(request.getNombreUsuario()).orElseThrow();
+        String token = jwtService.getToken(usuarioGeneral);
+        return AuthResponseDTO.builder()
+                .token(token)
+                .build();
     }
 
     public AuthResponseDTO registrar(RegistroUsuarioDTO request) {

@@ -10,17 +10,21 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 public class Inversion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private UUID idVenta;
 
-    @Column(nullable = false)
-    private UUID idUsuario;
+    @ManyToOne
+    @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
+    private UsuarioGeneral usuarioInversor;
 
-    @Column(nullable = false)
-    private UUID idProyecto;
+    @ManyToOne
+    @JoinColumn(name = "idProyecto", referencedColumnName = "idProyecto")
+    private Proyecto proyecto;
 
     @Column(nullable = false)
     private Date fechaVenta;
