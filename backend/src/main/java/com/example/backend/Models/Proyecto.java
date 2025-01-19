@@ -8,10 +8,14 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,15 +33,18 @@ public class Proyecto {
     @Column(nullable = false)
     private double precio_kw;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private double potencia;
 
-    @Column(nullable = false)
-    private double huella_carbono_ahorrada;
+    @Column(nullable = true)
+    private double huellaCarbonoAhorrada;
 
-    @Column(nullable = false)
-    private double generacion_anual;
+    @Column(nullable = true)
+    private double generacionAnual;
 
-    @Column(nullable = false)
-    private double unidades_disponibles;
+    @Column(nullable = true)
+    private double unidadesDisponibles;
+
+    @Column(nullable = true)
+    private double inversionHechaHastaAhora;
 }

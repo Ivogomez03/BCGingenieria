@@ -41,7 +41,7 @@ public class ApplicationConfig {
     @Bean
     public UserDetailsService userDetailService() {
 
-        return username -> usuarioGeneralDAO.findByNombreUsuario(username)
+        return username -> usuarioGeneralDAO.findByNombreUsuarioAndHabilitadoTrue(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
     }
 }

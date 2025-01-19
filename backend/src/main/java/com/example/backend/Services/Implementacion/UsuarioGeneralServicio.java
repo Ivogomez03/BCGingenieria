@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.DTO.UsuarioGeneralDTO;
+import com.example.backend.Exceptions.ValidationException;
 import com.example.backend.Models.UsuarioGeneral;
 import com.example.backend.Repository.UsuarioGeneralDAO;
 import com.example.backend.Services.Interface.UsuarioGeneralI;
@@ -42,9 +43,7 @@ public class UsuarioGeneralServicio implements UsuarioGeneralI {
         // Si hay apellido
         if (apellido != null && !apellido.isEmpty()) {
             usuariosGenerales = usuarioGeneralDAO.findByApellidoAndHabilitadoTrue(apellido);
-        }
-
-        else {
+        } else {
             throw new IllegalArgumentException("Debe proporcionar al menos un criterio de búsqueda.");
         }
 

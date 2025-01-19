@@ -1,4 +1,4 @@
-package com.example.backend.Services;
+package com.example.backend.Services.Implementacion;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,39 +17,42 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
-    @Autowired
-    private final UsuarioGeneralDAO usuarioGeneralDAO;
-    private final JwtService jwtService;
-    private final AuthenticationManager authenticationManager;
+        @Autowired
+        private final UsuarioGeneralDAO usuarioGeneralDAO;
+        private final JwtService jwtService;
+        private final AuthenticationManager authenticationManager;
 
-    public AuthResponseDTO login(LoginRequestDTO request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getNombreUsuario(), request.getContrasena()));
-        UserDetails usuarioGeneral = usuarioGeneralDAO.findByNombreUsuario(request.getNombreUsuario()).orElseThrow();
-        String token = jwtService.getToken(usuarioGeneral);
-        return AuthResponseDTO.builder()
-                .token(token)
-                .build();
-    }
+        public AuthResponseDTO login(LoginRequestDTO request) {
+                authenticationManager.authenticate(
+                                new UsernamePasswordAuthenticationToken(request.getNombreUsuario(),
+                                                request.getContrasena()));
+                UserDetails usuarioGeneral = usuarioGeneralDAO
+                                .findByNombreUsuarioAndHabilitadoTrue(request.getNombreUsuario())
+                                .orElseThrow();
+                String token = jwtService.getToken(usuarioGeneral);
+                return AuthResponseDTO.builder()
+                                .token(token)
+                                .build();
+        }
 
-    public AuthResponseDTO registrar(RegistroUsuarioDTO request) {
-        UsuarioGeneral usuarioGeneral = UsuarioGeneral.builder()
-                .nombreUsuario(request.getNombreUsuario())
-                .contrasena(request.getContrasena())
-                .edad(request.getEdad())
-                .apellido(request.getApellido())
-                .nombre(request.getNombre())
-                .localidad(request.getLocalidad())
-                .direccion(request.getDireccion())
-                .dni(request.getDni())
-                .email(request.getEmail())
-                .role(Role.USUARIO_GENERAL)
-                .build();
-        usuarioGeneralDAO.save(usuarioGeneral);
+        public AuthResponseDTO registrar(RegistroUsuarioDTO request) {
+                UsuarioGeneral usuarioGeneral = UsuarioGeneral.builder()
+                                .nombreUsuario(request.getNombreUsuario())
+                                .contrasena(request.getContrasena())
+                                .edad(request.getEdad())
+                                .apellido(request.getApellido())
+                                .nombre(request.getNombre())
+                                .localidad(request.getLocalidad())
+                                .direccion(request.getDireccion())
+                                .dni(request.getDni())
+                                .email(request.getEmail())
+                                .role(Role.USUARIO_GENERAL)
+                                .build();
+                usuarioGeneralDAO.save(usuarioGeneral);
 
-        return AuthResponseDTO.builder()
-                .token(jwtService.getToken(usuarioGeneral))
-                .build();
-    }
+                return AuthResponseDTO.builder()
+                                .token(jwtService.getToken(usuarioGeneral))
+                                .build();
+        }
 
 }
