@@ -1,9 +1,9 @@
 package com.example.backend.Models;
 
 import java.util.Date;
+import java.util.UUID;
 
-import org.springframework.data.annotation.Id;
-
+import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,8 +18,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Proyecto {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idProyecto;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idProyecto;
 
     @Column(nullable = false)
     private String nombre;

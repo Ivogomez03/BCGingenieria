@@ -47,12 +47,12 @@ public class UsuarioGeneralServicio implements UsuarioGeneralI {
             throw new IllegalArgumentException("Debe proporcionar al menos un criterio de búsqueda.");
         }
 
-        // Si no se encuentran bedeles, lanza una excepción
+        // Si no se encuentran usuarios, lanza una excepción
         if (usuariosGenerales.isEmpty()) {
             throw new IllegalArgumentException("No se encontraron usuarios con el apellido proporcionados.");
         }
 
-        // Convierte la lista de Bedel a BedelDTO
+        // Convierte la lista de usuarios generales a usuarios generales dto
         return usuariosGenerales.stream()
                 .map(this::convertirAUsuarioGeneralDTO)
                 .collect(Collectors.toList());

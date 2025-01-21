@@ -1,5 +1,14 @@
 package com.example.backend.Models;
 
-public class Regenera {
+import jakarta.persistence.Entity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+@Getter
+@Setter
+@Entity
+@SuperBuilder
+public class Regenera extends Usuario {
 
 }

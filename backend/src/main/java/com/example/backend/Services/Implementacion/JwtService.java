@@ -2,8 +2,6 @@ package com.example.backend.Services.Implementacion;
 
 import java.security.Key;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -15,19 +13,14 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class JwtService {
-    private static final String SECRET_KEY = "5489385493DASFDSGH5645H634649538003890";
+    private static final String SECRET_KEY = "SGVsbG8gd29ybGQgdGhpcyBpcyBhIGJpbmFyeSBzZWNyZXQgc3RyaW5n";
 
-    public String getToken(UserDetails usuarioGeneral) {
-        return getToken(new HashMap<>(), usuarioGeneral);
-    }
-
-    private String getToken(Map<String, Object> extraClaims, UserDetails usuarioGeneral) {
-        return Jwts
-                .builder()
-                .setClaims(extraClaims)
-                .setSubject(usuarioGeneral.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+    public String getToken(UserDetails userDetails) {
+        return Jwts.builder()
+                .setSubject(userDetails.getUsername())
+                .claim("role", userDetails.getAuthorities()) // Agrega el rol al token
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10)) // 10 horas
                 .signWith(getKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

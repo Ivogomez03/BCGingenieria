@@ -23,9 +23,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UsuarioGeneralController {
 
-    private UsuarioGeneralServicio usuarioGeneralServicio;
+    private final UsuarioGeneralServicio usuarioGeneralServicio;
 
-    private AdministradorServicio administradorServicio;
+    private final AdministradorServicio administradorServicio;
 
     @DeleteMapping("/admin/eliminarUsuarioGeneral")
     public ResponseEntity<String> eliminarUsuarioGeneral(@RequestBody UsuarioGeneralDTO usuarioGeneralDTO,
@@ -54,13 +54,18 @@ public class UsuarioGeneralController {
     public ResponseEntity<List<UsuarioGeneralDTO>> buscarPorApellido(@RequestParam(required = false) String apellido,
             Principal principal) {
         try {
+            System.out.println("Buscar por apellido iniciado");
+            System.out.println("Principal: " + principal.getName());
+
             String username = principal.getName();
+            System.out.println("El username es: " + username);
 
             Administrador admin = administradorServicio.buscarAdministrador(username);
-
+            System.out.println("El administrador es: " + admin);
             if (!admin.getRole().equals(Role.ADMIN)) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.emptyList());
             }
+
             // Llama al servicio para buscar los usuarios generales
             List<UsuarioGeneralDTO> resultado = usuarioGeneralServicio.buscarUsuariosGeneralesPorApellido(apellido);
 

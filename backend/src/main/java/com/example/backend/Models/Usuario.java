@@ -3,11 +3,13 @@ package com.example.backend.Models;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.MappedSuperclass;
@@ -23,7 +25,7 @@ import lombok.Data;
 @SuperBuilder
 public abstract class Usuario implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID idUsuario;
 
     @Column(unique = true, nullable = false)
@@ -53,6 +55,7 @@ public abstract class Usuario implements UserDetails {
     @Column(nullable = false)
     private int edad;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
