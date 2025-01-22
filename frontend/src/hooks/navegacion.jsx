@@ -13,5 +13,16 @@ export const useNavegacion = () => {
     const goToProyecto = () => {
         navigate('/proyecto')
     }
-    return { goToLogin, goToApp, goToProyecto };
+    const goToPanelAdmin = () => {
+        navigate('/panelAdministrador')
+    }
+    const goToModificarUsuario = (usuario) => {
+        navigate('/admin/modificarUsuario', { state: usuario })
+    }
+    const goToBuscarUsuario = () => {
+        navigate('/admin/buscarUsuario')
+    }
+
+
+    return { goToLogin, goToApp, goToProyecto, goToPanelAdmin, goToModificarUsuario, goToBuscarUsuario };
 }

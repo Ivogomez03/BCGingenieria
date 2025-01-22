@@ -1,7 +1,5 @@
 package com.example.backend.Services.Implementacion;
 
-import java.util.regex.Pattern;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,22 +31,41 @@ public class AuthService {
 
         public AuthResponseDTO login(LoginRequestDTO request) {
                 System.out.println("Autenticando usuario: " + request.getNombreUsuario());
+
                 authenticationManager.authenticate(
-                                new UsernamePasswordAuthenticationToken(request.getNombreUsuario(),
+                                new UsernamePasswordAuthenticationToken(
+                                                request.getNombreUsuario(),
                                                 request.getContrasena()));
                 System.out.println("Autenticación exitosa para: " + request.getNombreUsuario());
+
+                // Usar un contenedor mutable para el rol
+                final Role[] role = new Role[1];
+
                 // Intentar buscar primero en Administradores
                 UserDetails usuario = administradorDAO
                                 .findByNombreUsuario(request.getNombreUsuario())
-                                .<UserDetails>map(admin -> admin) // Si es un administrador
+                                .<UserDetails>map(admin -> {
+                                        role[0] = Role.ADMIN; // Asignar rol de administrador
+                                        return admin;
+                                })
                                 .orElseGet(() -> usuarioGeneralDAO
                                                 .findByNombreUsuarioAndHabilitadoTrue(request.getNombreUsuario())
+                                                .map(user -> {
+                                                        role[0] = Role.USUARIO_GENERAL; // Asignar rol de usuario
+                                                                                        // general
+                                                        return user;
+                                                })
                                                 .orElseThrow(() -> new IllegalArgumentException(
                                                                 "Usuario no encontrado")));
+
                 System.out.println(usuario);
+
                 String token = jwtService.getToken(usuario);
+
+                // Retornar el token y el rol
                 return AuthResponseDTO.builder()
                                 .token(token)
+                                .role(role[0]) // Incluir el rol en la respuesta
                                 .build();
         }
 

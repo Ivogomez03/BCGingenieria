@@ -1,5 +1,7 @@
+import { useNavegacion } from '../hooks/navegacion'
 import './Estilos/PanelAdmin.css'
 export const PanelAdministrador = () => {
+    const { goToBuscarUsuario } = useNavegacion();
     return (
         <div className='conteiner-panel-admin'>
             <nav>
@@ -11,8 +13,7 @@ export const PanelAdministrador = () => {
 
             </h1>
             <div className="acciones-administrador">
-                <button className='boton-registrar-usuario'>Registrar Usuario</button>
-                <button className='boton-registrar-usuario'>Buscar Usuario</button>
+                <button className='boton-registrar-usuario' onClick={goToBuscarUsuario}>Buscar Usuario</button>
 
             </div>
         </div>

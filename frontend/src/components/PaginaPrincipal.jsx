@@ -13,7 +13,7 @@ export const PaginaPrincipal = () => {
             <nav>
 
 
-                <img src="./public/BCG2.png" className="imagen-logo" alt="Logo BCG ingenieria" />
+                <img src="/BCG2.png" className="imagen-logo" alt="Logo BCG ingenieria" />
 
 
                 <div className='nav-links'>

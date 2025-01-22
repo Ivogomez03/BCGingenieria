@@ -27,8 +27,8 @@ public class UsuarioGeneralController {
 
     private final AdministradorServicio administradorServicio;
 
-    @DeleteMapping("/admin/eliminarUsuarioGeneral")
-    public ResponseEntity<String> eliminarUsuarioGeneral(@RequestBody UsuarioGeneralDTO usuarioGeneralDTO,
+    @DeleteMapping("/admin/eliminarUsuario")
+    public ResponseEntity<String> eliminarUsuarioGeneral(@RequestParam String nombreUsuario,
             Principal principal) {
         try {
 
@@ -40,7 +40,7 @@ public class UsuarioGeneralController {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tienes permisos para eliminar usuarios.");
             }
 
-            usuarioGeneralServicio.eliminarUsuarioGeneral(usuarioGeneralDTO);
+            usuarioGeneralServicio.eliminarUsuarioGeneral(nombreUsuario);
 
             return ResponseEntity.ok("El usuario ha sido eliminado correctamente.");
         } catch (IllegalArgumentException e) {
@@ -77,7 +77,7 @@ public class UsuarioGeneralController {
     }
 
     @PutMapping("/admin/modificarUsuario")
-    public ResponseEntity<String> modificarBedel(@RequestBody UsuarioGeneralDTO usuarioModificado,
+    public ResponseEntity<String> modificarUsuario(@RequestBody UsuarioGeneralDTO usuarioModificado,
             Principal principal) {
         try {
             String username = principal.getName();

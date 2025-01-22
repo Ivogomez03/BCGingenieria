@@ -25,10 +25,13 @@ public class SecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 return http
                                 .csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests(
-                                                authRequest -> authRequest.requestMatchers("/auth/**").permitAll()
-                                                                .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                                                                .anyRequest().authenticated())
+                                .authorizeHttpRequests(authRequest -> authRequest
+                                                .requestMatchers("/", "/index.html", "/assets/**", "/favicon.ico",
+                                                                "/vite.svg", "/BCG2.png", "/MariaTeresa.jpg")
+                                                .permitAll() // Rutas públicas
+                                                .requestMatchers("/auth/**").permitAll() // Rutas de autenticación
+                                                .requestMatchers("/admin/**").hasAuthority("ADMIN") // Solo ADMIN
+                                                .anyRequest().authenticated()) // Resto de rutas requieren autenticación
                                 .sessionManagement(sessionManager -> sessionManager
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                                 .authenticationProvider(authProvider)

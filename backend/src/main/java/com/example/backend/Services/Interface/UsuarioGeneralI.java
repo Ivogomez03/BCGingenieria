@@ -6,7 +6,7 @@ import com.example.backend.DTO.UsuarioGeneralDTO;
 import com.example.backend.Models.UsuarioGeneral;
 
 public interface UsuarioGeneralI {
-    public void eliminarUsuarioGeneral(UsuarioGeneralDTO usuarioGeneralDTO);
+    public void eliminarUsuarioGeneral(String nombreUsuario);
 
     public String modificarUsuarioGeneral(UsuarioGeneralDTO usuarioGeneralDTO);
 

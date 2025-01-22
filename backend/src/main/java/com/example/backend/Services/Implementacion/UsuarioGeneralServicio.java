@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.DTO.UsuarioGeneralDTO;
@@ -20,6 +21,7 @@ public class UsuarioGeneralServicio implements UsuarioGeneralI {
 
     private final UsuarioGeneralDAO usuarioGeneralDAO;
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("^(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%&*]).{8,16}$");
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public String validarContrasena(String contra) {
@@ -60,61 +62,90 @@ public class UsuarioGeneralServicio implements UsuarioGeneralI {
 
     @Override
     public UsuarioGeneralDTO convertirAUsuarioGeneralDTO(UsuarioGeneral usuarioGeneral) {
+
         UsuarioGeneralDTO dto = new UsuarioGeneralDTO();
+
         dto.setNombre(usuarioGeneral.getNombre());
+
         dto.setApellido(usuarioGeneral.getApellido());
+
         dto.setContrasena(usuarioGeneral.getContrasena());
+
         dto.setDireccion(usuarioGeneral.getDireccion());
+
         dto.setDni(usuarioGeneral.getDni());
+
         dto.setNombreUsuario(usuarioGeneral.getNombreUsuario());
+
         dto.setEsCliente(usuarioGeneral.isEsCliente());
+
         dto.setEdad(usuarioGeneral.getEdad());
+
         dto.setEmail(usuarioGeneral.getEmail());
+
         dto.setLocalidad(usuarioGeneral.getLocalidad());
+
         return dto;
     }
 
     @Override
     public String modificarUsuarioGeneral(UsuarioGeneralDTO usuarioGeneralDTO) {
 
-        String contraValida = this.validarContrasena(usuarioGeneralDTO.getContrasena());
+        // datos nulos o caracteres maximos se valida en front
 
-        if (contraValida.equals("Contraseña valida")) {
-            // datos nulos o caracteres maximos se valida en front
-            UsuarioGeneral usuarioGeneral = usuarioGeneralDAO
-                    .findByNombreUsuarioAndHabilitadoTrue(usuarioGeneralDTO.getNombreUsuario())
-                    .get();
-            if (usuarioGeneral == null) {
-                throw new RuntimeException("El usuario no existe, verificar datos ingresados");
-            } else {
-                usuarioGeneral.setNombre(usuarioGeneralDTO.getNombre());
-                usuarioGeneral.setApellido(usuarioGeneralDTO.getApellido());
-                usuarioGeneral.setContrasena(usuarioGeneralDTO.getContrasena());
-                usuarioGeneral.setDireccion(usuarioGeneralDTO.getDireccion());
-                usuarioGeneral.setDni(usuarioGeneralDTO.getDni());
-                usuarioGeneral.setNombreUsuario(usuarioGeneralDTO.getNombreUsuario());
-                usuarioGeneral.setEsCliente(usuarioGeneralDTO.isEsCliente());
-                usuarioGeneral.setEdad(usuarioGeneralDTO.getEdad());
-                usuarioGeneral.setEmail(usuarioGeneralDTO.getEmail());
-                usuarioGeneral.setLocalidad(usuarioGeneralDTO.getLocalidad());
+        UsuarioGeneral usuarioGeneral = usuarioGeneralDAO
+                .findByNombreUsuarioAndHabilitadoTrue(usuarioGeneralDTO.getNombreUsuario())
+                .get();
 
-                // Guardar los cambios en la base de datos
-                usuarioGeneralDAO.save(usuarioGeneral);
+        if (usuarioGeneral == null) {
 
-                // Convertir el usuarioGeneral actualizado a DTO y devolverlo
-                return "Usuario ha sido modificado correctamente";
-            }
+            throw new RuntimeException("El usuario no existe, verificar datos ingresados");
+
         } else {
-            throw new ValidationException(contraValida);
+
+            usuarioGeneral.setNombre(usuarioGeneralDTO.getNombre());
+
+            usuarioGeneral.setApellido(usuarioGeneralDTO.getApellido());
+
+            if (usuarioGeneralDTO.getContrasena() != null && !usuarioGeneralDTO.getContrasena().isEmpty()) {
+
+                String contraValida = this.validarContrasena(usuarioGeneralDTO.getContrasena());
+
+                if (contraValida.equals("Contraseña valida")) {
+                    usuarioGeneral.setContrasena(passwordEncoder.encode(usuarioGeneralDTO.getContrasena()));
+                } else
+                    throw new ValidationException(contraValida);
+
+            }
+
+            usuarioGeneral.setDireccion(usuarioGeneralDTO.getDireccion());
+
+            usuarioGeneral.setDni(usuarioGeneralDTO.getDni());
+
+            usuarioGeneral.setNombreUsuario(usuarioGeneralDTO.getNombreUsuario());
+
+            usuarioGeneral.setEsCliente(usuarioGeneralDTO.isEsCliente());
+
+            usuarioGeneral.setEdad(usuarioGeneralDTO.getEdad());
+
+            usuarioGeneral.setEmail(usuarioGeneralDTO.getEmail());
+
+            usuarioGeneral.setLocalidad(usuarioGeneralDTO.getLocalidad());
+
+            // Guardar los cambios en la base de datos
+            usuarioGeneralDAO.save(usuarioGeneral);
+
+            // Convertir el usuarioGeneral actualizado a DTO y devolverlo
+            return "Usuario ha sido modificado correctamente";
         }
 
     }
 
     @Override
-    public void eliminarUsuarioGeneral(UsuarioGeneralDTO usuarioGeneralDTO) {
+    public void eliminarUsuarioGeneral(String nombreUsuario) {
         // Buscar el Bedel en la base de datos;
         UsuarioGeneral usuarioGeneral = usuarioGeneralDAO
-                .findByNombreUsuarioAndHabilitadoTrue(usuarioGeneralDTO.getNombreUsuario())
+                .findByNombreUsuarioAndHabilitadoTrue(nombreUsuario)
                 .get();
         if (usuarioGeneral == null) {
             throw new RuntimeException("El usuario general no existe");

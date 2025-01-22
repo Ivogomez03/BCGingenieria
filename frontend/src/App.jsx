@@ -9,6 +9,9 @@ import { useRef } from 'react';
 import { HashRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import { Login } from './components/Login'
 import { Proyecto } from './components/Proyecto';
+import { PanelAdministrador } from './components/PanelAdmin';
+import ModificarUsuario from './components/ModificarUsuario';
+import BuscarUsuarios from './components/BuscarUsuario';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
 
@@ -40,6 +43,9 @@ const MainApp = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<PaginaPrincipal />} />
         <Route path="/proyecto" element={<Proyecto />} />
+        <Route path="/panelAdministrador" element={<PanelAdministrador />} />
+        <Route path="/admin/modificarUsuario" element={<ModificarUsuario />} />
+        <Route path="/admin/buscarUsuario" element={<BuscarUsuarios />} />
 
       </Routes>
     </Router>
