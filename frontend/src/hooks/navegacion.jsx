@@ -22,7 +22,10 @@ export const useNavegacion = () => {
     const goToBuscarUsuario = () => {
         navigate('/admin/buscarUsuario')
     }
+    const goToRegistrarUsuario = () => {
+        navigate('/registrar')
+    }
 
 
-    return { goToLogin, goToApp, goToProyecto, goToPanelAdmin, goToModificarUsuario, goToBuscarUsuario };
+    return { goToLogin, goToApp, goToProyecto, goToPanelAdmin, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
 }

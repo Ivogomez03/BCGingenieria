@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
-
+import './Estilos/ModificarUsuario.css'
+import { BackGroundCircles } from "./BackGroundCircles";
 const ModificarUsuario = () => {
     const location = useLocation();
     const [usuario, setUsuario] = useState({
@@ -44,106 +45,113 @@ const ModificarUsuario = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <h2>Modificar Usuario</h2>
-            <label>
-                Nombre de Usuario:
-                <input
-                    type="text"
-                    name="nombreUsuario"
-                    value={usuario.nombreUsuario}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                Contraseña:
-                <input
-                    type="password"
-                    name="contrasena"
-                    value={usuario.contrasena}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Nombre:
-                <input
-                    type="text"
-                    name="nombre"
-                    value={usuario.nombre}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                Apellido:
-                <input
-                    type="text"
-                    name="apellido"
-                    value={usuario.apellido}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                DNI:
-                <input
-                    type="number"
-                    name="dni"
-                    value={usuario.dni}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                Email:
-                <input
-                    type="email"
-                    name="email"
-                    value={usuario.email}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                Dirección:
-                <input
-                    type="text"
-                    name="direccion"
-                    value={usuario.direccion}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <label>
-                Localidad:
-                <input
-                    type="text"
-                    name="localidad"
-                    value={usuario.localidad}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                Edad:
-                <input
-                    type="number"
-                    name="edad"
-                    value={usuario.edad}
-                    onChange={handleChange}
-                />
-            </label>
-            <label>
-                ¿Es Cliente?
-                <input
-                    type="checkbox"
-                    name="esCliente"
-                    checked={usuario.esCliente}
-                    onChange={handleChange}
-                />
-            </label>
-            <button type="submit">Modificar Usuario</button>
-        </form>
+        <>
+            <BackGroundCircles />
+            <section className="seccion-modificar-usuario">
+                <form onSubmit={handleSubmit} className="form-modificar-usuario">
+                    <h2>Modificar Usuario</h2>
+                    <label>
+                        Nombre de Usuario:
+                        <input
+                            type="text"
+                            name="nombreUsuario"
+                            value={usuario.nombreUsuario}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Contraseña:
+                        <input
+                            type="password"
+                            name="contrasena"
+                            value={usuario.contrasena}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Nombre:
+                        <input
+                            type="text"
+                            name="nombre"
+                            value={usuario.nombre}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Apellido:
+                        <input
+                            type="text"
+                            name="apellido"
+                            value={usuario.apellido}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        DNI:
+                        <input
+                            type="number"
+                            name="dni"
+                            value={usuario.dni}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Email:
+                        <input
+                            type="email"
+                            name="email"
+                            value={usuario.email}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Dirección:
+                        <input
+                            type="text"
+                            name="direccion"
+                            value={usuario.direccion}
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label>
+                        Localidad:
+                        <input
+                            type="text"
+                            name="localidad"
+                            value={usuario.localidad}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        Edad:
+                        <input
+                            type="number"
+                            name="edad"
+                            value={usuario.edad}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <label>
+                        ¿Es Cliente?
+                        <input
+                            type="checkbox"
+                            name="esCliente"
+                            checked={usuario.esCliente}
+                            onChange={handleChange}
+                        />
+                    </label>
+                    <button type="submit" className="boton-modificar-usuario">Modificar Usuario</button>
+                </form>
+            </section>
+        </>
+
+
     );
 };
 

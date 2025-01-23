@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistroUsuarioDTO {
-    private UUID idUsuario;
     private String nombreUsuario;
     private String contrasena;
     private String nombre;

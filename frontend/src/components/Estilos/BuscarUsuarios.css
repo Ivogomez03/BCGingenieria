@@ -1,0 +1,146 @@
+/* Estilos Generales */
+.seccion-buscar-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    color: white;
+    background: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 100vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.seccion-buscar-usuario h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    background: linear-gradient(to right, #ffffff, #b8b8b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Formulario */
+.form-buscar-usuario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.form-buscar-usuario label {
+    font-size: 1.2rem;
+    color: #b8b8b8;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-buscar-usuario input {
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-buscar-usuario input:focus {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.form-buscar-usuario button {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    transition: all 0.3s ease;
+}
+
+.form-buscar-usuario button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    opacity: 0.9;
+}
+
+/* Mensaje de Error */
+.seccion-buscar-usuario p {
+    font-size: 1rem;
+    color: red;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.table-buscar-usuario {
+    width: 100%;
+    border-collapse: collapse;
+    /* Evita los espacios entre celdas */
+    margin: 2rem 0;
+    background-color: transparent;
+    /* Fondo transparente para la tabla */
+    text-align: left;
+    /* Alineación de texto */
+}
+
+.table-buscar-usuario th,
+.table-buscar-usuario td {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Bordes blancos finos y opacos */
+    padding: 0.8rem 1rem;
+    /* Espaciado interno */
+    color: #fff;
+    /* Texto blanco */
+}
+
+.table-buscar-usuario th {
+    background-color: rgba(0, 0, 0, 0.1);
+    /* Fondo semitransparente para encabezados */
+    font-weight: 700;
+    /* Negrita para encabezados */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
+}
+
+.table-buscar-usuario tbody tr {
+    transition: background-color 0.3s ease;
+    /* Transición para el hover */
+}
+
+
+
+.table-buscar-usuario td {
+    background-color: #ffffff06;
+    /* Fondo semitransparente para las celdas */
+    font-size: 1rem;
+    /* Tamaño del texto */
+}
+
+.table-buscar-usuario button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* Bordes blancos opacos */
+    color: white;
+    /* Texto blanco */
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.table-buscar-usuario button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Fondo semitransparente al pasar el cursor */
+    color: #a37dfc;
+    /* Cambiar color del texto */
+}

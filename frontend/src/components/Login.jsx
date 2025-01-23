@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavegacion } from '../hooks/navegacion';
 import './Estilos/Login.css';
+import { BackGroundCircles } from '../components/BackGroundCircles'
 
 export const Login = () => {
     const { goToApp, goToPanelAdmin } = useNavegacion(); // Agrega funciones de navegación personalizadas
@@ -44,32 +45,36 @@ export const Login = () => {
     };
 
     return (
-        <section className="seccion-login">
-            <img src="./BCG2.png" alt="" />
-            <button className="boton-seccion-login-volver" onClick={goToApp}>
-                Volver
-            </button>
-            <div className="seccion-content-login">
-                <h1>Iniciar sesión</h1>
-                <form onSubmit={handleLogin} className="formulario-login">
-                    <input
-                        type="text"
-                        placeholder="Nombre de usuario"
-                        value={nombreUsuario}
-                        onChange={(e) => setNombreUsuario(e.target.value)}
-                        required
-                    />
-                    <input
-                        type="password"
-                        placeholder="Contraseña"
-                        value={contrasena}
-                        onChange={(e) => setContrasena(e.target.value)}
-                        required
-                    />
-                    {error && <p className="error">{error}</p>}
-                    <button type="submit">Acceder</button>
-                </form>
-            </div>
-        </section>
+        <>
+            <BackGroundCircles />
+            <section className="seccion-login">
+                <img src="./BCG2.png" alt="" />
+                <button className="boton-seccion-login-volver" onClick={goToApp}>
+                    Volver
+                </button>
+                <div className="seccion-content-login">
+                    <h1>Iniciar sesión</h1>
+                    <form onSubmit={handleLogin} className="formulario-login">
+                        <input
+                            type="text"
+                            placeholder="Nombre de usuario"
+                            value={nombreUsuario}
+                            onChange={(e) => setNombreUsuario(e.target.value)}
+                            required
+                        />
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            value={contrasena}
+                            onChange={(e) => setContrasena(e.target.value)}
+                            required
+                        />
+                        {error && <p className="error">{error}</p>}
+                        <button type="submit">Acceder</button>
+                    </form>
+                </div>
+            </section>
+        </>
+
     );
 };

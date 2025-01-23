@@ -12,6 +12,7 @@ import { Proyecto } from './components/Proyecto';
 import { PanelAdministrador } from './components/PanelAdmin';
 import ModificarUsuario from './components/ModificarUsuario';
 import BuscarUsuarios from './components/BuscarUsuario';
+import { RegistrarUsuario } from './components/RegistrarUsuario';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
 
@@ -46,6 +47,7 @@ const MainApp = () => {
         <Route path="/panelAdministrador" element={<PanelAdministrador />} />
         <Route path="/admin/modificarUsuario" element={<ModificarUsuario />} />
         <Route path="/admin/buscarUsuario" element={<BuscarUsuarios />} />
+        <Route path="/registrar" element={<RegistrarUsuario />} />
 
       </Routes>
     </Router>

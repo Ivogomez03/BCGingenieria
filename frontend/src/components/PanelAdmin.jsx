@@ -5,17 +5,20 @@ export const PanelAdministrador = () => {
     return (
         <div className='conteiner-panel-admin'>
             <nav>
-                <h1>BRGing</h1>
+                <img src="./BCG2.png" alt="logo" />
                 <button className='cerrar-sesion-admin'>Cerrar sesión</button>
             </nav>
-            <h1 className='titulo-bienvenido-admin'>
-                Bienvenido, Admin. <br /> ¿Qué deseas hacer?
+            <section className='seccion-panel-admin'>
+                <h1 className='titulo-bienvenido-admin'>
+                    Bienvenido, Admin. <br /> ¿Qué deseas hacer?
 
-            </h1>
-            <div className="acciones-administrador">
-                <button className='boton-registrar-usuario' onClick={goToBuscarUsuario}>Buscar Usuario</button>
+                </h1>
+                <div className="acciones-administrador">
+                    <button className='boton-registrar-usuario' onClick={goToBuscarUsuario}>Buscar Usuario</button>
 
-            </div>
+                </div>
+            </section>
+
         </div>
     )
 }

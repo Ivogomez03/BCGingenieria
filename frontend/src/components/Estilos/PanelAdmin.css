@@ -72,6 +72,22 @@
     animation: fadeIn 0.8s ease-out;
 }
 
+.conteiner-panel-admin nav {
+    top: 0;
+    position: absolute;
+}
+
+.conteiner-panel-admin nav img {
+    width: 12rem;
+}
+
+.seccion-panel-admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

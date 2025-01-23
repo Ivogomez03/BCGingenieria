@@ -1,12 +1,11 @@
 import './Estilos/PaginaPrincipal.css'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import { useNavigate } from 'react-router-dom';
-export const PaginaPrincipal = () => {
-    const navigate = useNavigate();
+import { useNavegacion } from '../hooks/navegacion';
 
-    const goToLogin = () => {
-        navigate('/login');
-    };
+export const PaginaPrincipal = () => {
+
+    const { goToLogin, goToRegistrarUsuario } = useNavegacion();
+
     return (<>
 
         <div className="container">
@@ -35,7 +34,7 @@ export const PaginaPrincipal = () => {
                     </button>
                 </div>
                 <div className='auth-links'>
-                    <button className='registrarse'>Registrarse</button>
+                    <button className='registrarse' onClick={goToRegistrarUsuario}>Registrarse</button>
                     <button className='iniciar-sesion' onClick={goToLogin}> Iniciar sesión</button>
                 </div>
             </nav>

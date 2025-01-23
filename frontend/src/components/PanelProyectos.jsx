@@ -7,10 +7,12 @@ export const PanelProyectos = () => {
     const { goToProyecto } = useNavegacion();
     return (
         <>
+
             <h1 className='titulo-panel-proyecto'>
                 Proyectos de BCG
             </h1>
             <section className={`panel-proyectos`}>
+
 
                 <div className="proyecto-en-panel">
                     <img src="./MariaTeresa.jpg" alt="Maria Teresa" />
