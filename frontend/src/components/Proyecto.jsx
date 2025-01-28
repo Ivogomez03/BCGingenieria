@@ -2,6 +2,7 @@ import { useId, useState } from "react";
 import { useCalculo } from "../hooks/calculoPaneles";
 import './Estilos/Proyecto.css'
 import { useNavegacion } from "../hooks/navegacion"
+import { BackGroundCircles } from "./BackGroundCircles";
 const CalculoDePaneles = ({ onSiguiente }) => {
     const consumoInputId = useId();
     const { cantidadPaneles, consumo, handleChangeConsumoInput, handleCalcular } = useCalculo();
@@ -64,6 +65,8 @@ const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
     };
 
     return (
+
+
         <section className="ingresa-monto-seccion">
             <h2>Tu monto máximo disponible a invertir es de: $6.721.000 o USD 6.294,77</h2>
             <label htmlFor={selectId}>Selecciona el tipo de transferencia:</label>
@@ -75,7 +78,7 @@ const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
                 <span>{isTransferenciaEnPesos ? "ARS" : "USD"}</span>
                 <input
                     type="text"
-                    placeholder={`Monto mínimo: ${montoMinimo} USD`}
+                    placeholder={`Monto mínimo: ${montoMinimo} ${isTransferenciaEnPesos ? "ARS" : "USD"}`}
                     value={monto}
                     onChange={handleInputChange}
                     className="input-secciones-proyecto"
@@ -83,6 +86,8 @@ const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
             </div>
             <button className="boton-siguiente" onClick={handleNext}>Siguiente</button>
         </section>
+
+
     );
 };
 
@@ -120,31 +125,35 @@ export const Proyecto = () => {
     };
 
     return (
-        <main className="main-proyecto">
-            <button className="boton-proyecto-atras" onClick={goToApp}>Volver</button>
-            <section className="proyecto-seccion">
-                <h1>Nombre del Proyecto</h1>
-                <h2>Descripción del proyecto</h2>
-                <div>
-                    <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de paneles</button>
-                    <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Ingresa el monto</button>
-                    <button className="boton-cambio-seccion" onClick={() => setEtapa(3)}>3. Confirma tu inversión</button>
-                </div>
+        <>
+            <BackGroundCircles />
+            <main className="main-proyecto">
+                <button className="boton-proyecto-atras" onClick={goToApp}>Volver</button>
+                <section className="proyecto-seccion">
+                    <h1>Nombre del Proyecto</h1>
+                    <h2>Descripción del proyecto</h2>
+                    <div>
+                        <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de paneles</button>
+                        <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Ingresa el monto</button>
+                        <button className="boton-cambio-seccion" onClick={() => setEtapa(3)}>3. Confirma tu inversión</button>
+                    </div>
 
-                {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} />}
-                {etapa === 2 && (
-                    <IngresaMonto
-                        panelesNecesarios={cantidadPaneles}
-                        valorKW={valorKW}
-                        onSiguiente={avanzarConMonto}
-                    />
-                )}
-                {etapa === 3 && (
-                    <ConfirmarInversion monto={monto} isTransferenciaEnPesos={isTransferenciaEnPesos} />
-                )}
+                    {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} />}
+                    {etapa === 2 && (
+                        <IngresaMonto
+                            panelesNecesarios={cantidadPaneles}
+                            valorKW={valorKW}
+                            onSiguiente={avanzarConMonto}
+                        />
+                    )}
+                    {etapa === 3 && (
+                        <ConfirmarInversion monto={monto} isTransferenciaEnPesos={isTransferenciaEnPesos} />
+                    )}
 
-                {etapa > 1 && <button className="boton-proyecto-atras" onClick={handleAtras}>Atrás</button>}
-            </section>
-        </main>
+                    {etapa > 1 && <button className="boton-proyecto-atras" onClick={handleAtras}>Atrás</button>}
+                </section>
+            </main>
+        </>
+
     );
 };
