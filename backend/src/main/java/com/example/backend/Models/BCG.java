@@ -9,6 +9,6 @@ import lombok.experimental.SuperBuilder;
 @Setter
 @Entity
 @SuperBuilder
-public class Regenera extends Usuario {
+public class BCG extends Usuario {
 
 }

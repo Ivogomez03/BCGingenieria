@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Proyecto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,10 +30,13 @@ public class Proyecto {
     private String descripcion;
 
     @Column(nullable = false)
-    private Date fecha_creacion;
+    private Date fechaCreacion;
 
     @Column(nullable = false)
-    private double precio_kw;
+    private boolean disponible;
+
+    @Column(nullable = false)
+    private double precioKW;
 
     @Column(nullable = true)
     private double potencia;

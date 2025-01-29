@@ -31,6 +31,7 @@ public class SecurityConfig {
                                                 .permitAll() // Rutas públicas
                                                 .requestMatchers("/auth/**").permitAll() // Rutas de autenticación
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN") // Solo ADMIN
+                                                .requestMatchers("/bcg/**").hasAuthority("BCG") // Solo BCG
                                                 .anyRequest().authenticated()) // Resto de rutas requieren autenticación
                                 .sessionManagement(sessionManager -> sessionManager
                                                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))

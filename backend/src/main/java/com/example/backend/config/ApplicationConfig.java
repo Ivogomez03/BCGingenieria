@@ -1,20 +1,22 @@
 package com.example.backend.config;
 
+import java.util.Optional;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import com.example.backend.Models.Administrador;
+import com.example.backend.Models.BCG;
+import com.example.backend.Models.UsuarioGeneral;
 import com.example.backend.Repository.AdministradorDAO;
+import com.example.backend.Repository.BCGDAO;
 import com.example.backend.Repository.UsuarioGeneralDAO;
-
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -22,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class ApplicationConfig {
     private final UsuarioGeneralDAO usuarioGeneralDAO;
     private final AdministradorDAO administradorDAO;
+    private final BCGDAO bcgDAO;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
@@ -46,12 +49,24 @@ public class ApplicationConfig {
 
         return username -> {
             // Buscar en AdministradorDAO
-            return administradorDAO.findByNombreUsuario(username)
-                    .<UserDetails>map(admin -> admin) // Si es un administrador, devolverlo como UserDetails
-                    .orElseGet(() ->
-            // Si no lo encuentra en AdministradorDAO, buscar en UsuarioGeneralDAO
-            usuarioGeneralDAO.findByNombreUsuarioAndHabilitadoTrue(username)
-                    .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado")));
+            Optional<Administrador> administrador = administradorDAO.findByNombreUsuario(username);
+            if (administrador.isPresent()) {
+                return administrador.get(); // Devuelve si encuentra en AdministradorDAO
+            }
+
+            // Buscar en UsuarioGeneralDAO
+            Optional<UsuarioGeneral> usuarioGeneral = usuarioGeneralDAO.findByNombreUsuarioAndHabilitadoTrue(username);
+            if (usuarioGeneral.isPresent()) {
+                return usuarioGeneral.get(); // Devuelve si encuentra en UsuarioGeneralDAO
+            }
+
+            // Buscar en bcgDAO
+            Optional<BCG> bcg = bcgDAO.findByNombreUsuario(username);
+            if (bcg.isPresent()) {
+                return bcg.get(); // Devuelve si encuentra en bcgDAO
+            }
+            // Si no se encuentra en ninguno, lanzar excepción
+            throw new UsernameNotFoundException("Usuario no encontrado: " + username);
         };
     }
 }

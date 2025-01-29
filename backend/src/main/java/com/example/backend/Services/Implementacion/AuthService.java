@@ -13,8 +13,8 @@ import com.example.backend.DTO.RegistroUsuarioDTO;
 import com.example.backend.Models.Role;
 import com.example.backend.Models.UsuarioGeneral;
 import com.example.backend.Repository.AdministradorDAO;
+import com.example.backend.Repository.BCGDAO;
 import com.example.backend.Repository.UsuarioGeneralDAO;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -23,6 +23,7 @@ public class AuthService {
         @Autowired
         private final UsuarioGeneralDAO usuarioGeneralDAO;
         private final AdministradorDAO administradorDAO;
+        private final BCGDAO bcgDAO;
         private final JwtService jwtService;
         private final AuthenticationManager authenticationManager;
         private final PasswordEncoder passwordEncoder;
@@ -42,21 +43,23 @@ public class AuthService {
                 final Role[] role = new Role[1];
 
                 // Intentar buscar primero en Administradores
-                UserDetails usuario = administradorDAO
-                                .findByNombreUsuario(request.getNombreUsuario())
+                UserDetails usuario = administradorDAO.findByNombreUsuario(request.getNombreUsuario())
                                 .<UserDetails>map(admin -> {
-                                        role[0] = Role.ADMIN; // Asignar rol de administrador
+                                        role[0] = Role.ADMIN;
                                         return admin;
                                 })
-                                .orElseGet(() -> usuarioGeneralDAO
+                                .or(() -> usuarioGeneralDAO
                                                 .findByNombreUsuarioAndHabilitadoTrue(request.getNombreUsuario())
                                                 .map(user -> {
-                                                        role[0] = Role.USUARIO_GENERAL; // Asignar rol de usuario
-                                                                                        // general
+                                                        role[0] = Role.USUARIO_GENERAL;
                                                         return user;
-                                                })
-                                                .orElseThrow(() -> new IllegalArgumentException(
-                                                                "Usuario no encontrado")));
+                                                }))
+                                .or(() -> bcgDAO.findByNombreUsuario(request.getNombreUsuario())
+                                                .map(user -> {
+                                                        role[0] = Role.BCG;
+                                                        return user;
+                                                }))
+                                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
                 System.out.println(usuario);
 

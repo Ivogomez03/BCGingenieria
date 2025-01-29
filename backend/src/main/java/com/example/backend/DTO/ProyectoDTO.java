@@ -11,13 +11,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProyectoDTO {
+
     private String nombre;
     private String descripcion;
-    private Date fecha_creacion;
-    private double precio_kw;
+    private Date fechaCreacion;
+    private double precioKW;
     private double potencia;
     private double huellaCarbonoAhorrada;
     private double generacionAnual;
     private double unidadesDisponibles;
     private double inversionHechaHastaAhora;
+    private boolean disponible;
+
 }

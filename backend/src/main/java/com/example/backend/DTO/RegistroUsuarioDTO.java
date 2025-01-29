@@ -1,6 +1,5 @@
 package com.example.backend.DTO;
 
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
