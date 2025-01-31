@@ -1,10 +1,8 @@
 package com.example.backend.Services.Implementacion;
 
 import org.springframework.stereotype.Service;
-
 import com.example.backend.Models.BCG;
 import com.example.backend.Repository.BCGDAO;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -26,4 +24,5 @@ public class BCGServicio {
         return bcg;
 
     }
+
 }

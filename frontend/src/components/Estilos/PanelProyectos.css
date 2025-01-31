@@ -29,7 +29,7 @@
 .proyecto-en-panel {
     width: 80%;
     text-align: center;
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     padding: 40px 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border-radius: 20px;
@@ -57,7 +57,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #fff;
-    background: linear-gradient(120deg, rgba(128, 0, 255, 1), rgba(64, 0, 128, 1));
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6), rgba(14, 120, 110, 0.6));
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -70,7 +70,7 @@
 
 .boton-mas-info:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(128, 0, 255, 0.6);
+    box-shadow: 0 0 15px rgba(37, 150, 190, 0.6);
 
 }
 

@@ -114,14 +114,14 @@ nav h1 {
 .nav-links button:hover {
 
     /* Fondo transparente */
-    color: #a37dfc;
+    color: #2596be;
     /* Color violeta claro */
 }
 
 .nav-links iconos-flecha-abajo:hover {
 
     /* Fondo transparente */
-    color: #a37dfc;
+    color: #2596be;
     /* Color violeta claro */
 }
 
@@ -147,13 +147,13 @@ nav h1 {
 }
 
 .auth-links .registrarse:hover {
-    color: #a37dfc;
+    color: #2596be;
     /* Violeta claro al hover */
 }
 
 /* Botón "Try Now" */
 .auth-links .iniciar-sesion {
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     width: 8rem;
     color: white;
     border: none;
@@ -219,7 +219,7 @@ nav h1 {
 }
 
 .seccion-medio .iniciate {
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     width: 12rem;
     color: white;
 }

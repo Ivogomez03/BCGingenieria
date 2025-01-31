@@ -17,8 +17,8 @@ const CalculoDePaneles = ({ onSiguiente }) => {
 
     return (
         <section className="calculo-paneles-seccion">
-            <h1>Calculo de paneles necesarios</h1>
-            <p>Para saber cuántos paneles necesita, ingrese su consumo de los últimos 12 meses de luz.</p>
+            <h1>Calculo de potencia necesaria</h1>
+            <p>Para saber cuanta potencia necesita, ingrese su consumo de los últimos 12 meses de luz.</p>
             <label htmlFor={consumoInputId}>Consumo de los últimos 12 meses:</label>
             <input
                 type="text"
@@ -29,7 +29,7 @@ const CalculoDePaneles = ({ onSiguiente }) => {
                 value={consumo}
             />
             <button className="boton-calculo" onClick={handleCalcular}>Calcular</button>
-            {cantidadPaneles > 0 && <h2>Cantidad de paneles: {cantidadPaneles}</h2>}
+            {cantidadPaneles > 0 && <h2>Cantidad de potencia: {cantidadPaneles}KW</h2>}
             <h3>El valor de un KW es de $7000 USD</h3>
             <button className="boton-siguiente" onClick={handleNext}>Siguiente</button>
         </section>
@@ -133,7 +133,7 @@ export const Proyecto = () => {
                     <h1>Nombre del Proyecto</h1>
                     <h2>Descripción del proyecto</h2>
                     <div>
-                        <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de paneles</button>
+                        <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de potencia</button>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Ingresa el monto</button>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(3)}>3. Confirma tu inversión</button>
                     </div>

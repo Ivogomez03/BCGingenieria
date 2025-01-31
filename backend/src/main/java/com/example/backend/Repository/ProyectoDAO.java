@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import com.example.backend.Models.Proyecto;
 
 public interface ProyectoDAO extends JpaRepository<Proyecto, UUID> {
-    @Query("SELECT p FROM Proyecto p WHERE u.nombreProyecto = :nombreProyecto")
-    Optional<Proyecto> findByNombre(String nombreProyecto);
+    @Query("SELECT p FROM Proyecto p WHERE p.nombre = :nombre")
+    Optional<Proyecto> findByNombre(String nombre);
 
 }

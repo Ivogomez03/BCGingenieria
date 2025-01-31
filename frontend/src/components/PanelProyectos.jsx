@@ -9,7 +9,7 @@ export const PanelProyectos = () => {
         <>
 
             <h1 className='titulo-panel-proyecto'>
-                Proyectos de BCG
+                Proyectos Activos
             </h1>
             <section className={`panel-proyectos`}>
 
