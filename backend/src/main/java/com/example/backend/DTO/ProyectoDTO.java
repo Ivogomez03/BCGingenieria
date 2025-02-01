@@ -21,6 +21,7 @@ public class ProyectoDTO {
     private double generacionAnual;
     private double unidadesDisponibles;
     private double inversionHechaHastaAhora;
+    private double montoMinimoAinvertir;
     private boolean disponible;
 
 }

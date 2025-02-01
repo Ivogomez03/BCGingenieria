@@ -4,7 +4,7 @@ import './Estilos/Login.css';
 import { BackGroundCircles } from '../components/BackGroundCircles'
 
 export const Login = () => {
-    const { goToApp, goToPanelAdmin } = useNavegacion(); // Agrega funciones de navegación personalizadas
+    const { goToApp, goToPanelAdmin, goToPanelBCG } = useNavegacion(); // Agrega funciones de navegación personalizadas
     const [nombreUsuario, setNombreUsuario] = useState('');
     const [contrasena, setContrasena] = useState('');
     const [error, setError] = useState('');
@@ -35,6 +35,8 @@ export const Login = () => {
                 goToPanelAdmin(); // Redirige al dashboard del administrador
             } else if (data.role === 'USUARIO_GENERAL') {
                 goToApp(); // Redirige al dashboard del usuario general
+            } else if (data.role === 'BCG') {
+                goToPanelBCG(); // Redirige al dashboard del usuario de bcg
             } else {
                 throw new Error('Rol desconocido');
             }

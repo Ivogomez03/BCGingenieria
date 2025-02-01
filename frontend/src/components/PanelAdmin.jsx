@@ -14,7 +14,7 @@ export const PanelAdministrador = () => {
 
                 </h1>
                 <div className="acciones-administrador">
-                    <button className='boton-registrar-usuario' onClick={goToBuscarUsuario}>Buscar Usuario</button>
+                    <button className='boton-administrador-buscar-usuario' onClick={goToBuscarUsuario}>Buscar Usuario</button>
 
                 </div>
             </section>

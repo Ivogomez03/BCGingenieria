@@ -1,4 +1,4 @@
-.conteiner-panel-admin {
+.conteiner-panel-bcg {
     position: relative;
     height: 100vh;
     width: 100%;
@@ -10,7 +10,7 @@
     z-index: 2;
 }
 
-.acciones-administrador {
+.acciones-bcg {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -20,7 +20,7 @@
     z-index: 2;
 }
 
-.cerrar-sesion-admin {
+.cerrar-sesion-bcg {
     background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     width: 8rem;
     color: white;
@@ -35,12 +35,13 @@
     transition: all 0.3s ease;
 }
 
-.cerrar-sesion-admin:hover {
+.cerrar-sesion-bcg:hover {
     opacity: 0.9;
     /* Efecto sutil al hover */
 }
 
-.boton-administrador-buscar-usuario {
+.boton-bcg-buscar-proyectos,
+.boton-bcg-crear-proyectos {
     padding: 0.8rem 2rem;
     font-size: 1rem;
     border-radius: 24px;
@@ -53,14 +54,15 @@
     color: white;
 }
 
-.boton-administrador-buscar-usuario:hover {
+.boton-bcg-buscar-proyectos:hover,
+.boton-bcg-crear-proyectos:hover {
 
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 
 }
 
-.titulo-bienvenido-admin {
+.titulo-bienvenido-bcg {
     font-size: 4rem;
     font-weight: 700;
     line-height: 1.2;
@@ -72,16 +74,16 @@
     animation: fadeIn 0.8s ease-out;
 }
 
-.conteiner-panel-admin nav {
+.conteiner-panel-bcg nav {
     top: 0;
     position: absolute;
 }
 
-.conteiner-panel-admin nav img {
+.conteiner-panel-bcg nav img {
     width: 12rem;
 }
 
-.seccion-panel-admin {
+.seccion-panel-bcg {
     display: flex;
     justify-content: center;
     align-items: center;

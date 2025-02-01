@@ -25,7 +25,13 @@ export const useNavegacion = () => {
     const goToRegistrarUsuario = () => {
         navigate('/registrar')
     }
+    const goToPanelBCG = () => {
+        navigate('/panelBCG')
+    }
+    const goToCrearProyecto = () => {
+        navigate('/crearProyecto')
+    }
 
 
-    return { goToLogin, goToApp, goToProyecto, goToPanelAdmin, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
+    return { goToLogin, goToCrearProyecto, goToApp, goToProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
 }

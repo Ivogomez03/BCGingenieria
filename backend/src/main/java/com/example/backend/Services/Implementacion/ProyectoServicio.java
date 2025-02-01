@@ -30,6 +30,7 @@ public class ProyectoServicio {
                 .unidadesDisponibles(proyectoDTO.getUnidadesDisponibles())
                 .inversionHechaHastaAhora(proyectoDTO.getInversionHechaHastaAhora())
                 .fechaCreacion(proyectoDTO.getFechaCreacion())
+                .montoMinimoAinvertir(proyectoDTO.getMontoMinimoAinvertir())
                 .disponible(true)
                 .build();
 
@@ -85,6 +86,8 @@ public class ProyectoServicio {
             proyecto.setUnidadesDisponibles(proyectoDTO.getUnidadesDisponibles());
 
             proyecto.setInversionHechaHastaAhora(proyectoDTO.getInversionHechaHastaAhora());
+
+            proyecto.setMontoMinimoAinvertir(proyectoDTO.getMontoMinimoAinvertir());
 
             proyecto.setFechaCreacion(proyectoDTO.getFechaCreacion());
 
@@ -148,13 +151,13 @@ public class ProyectoServicio {
 
         dto.setGeneracionAnual(proyecto.getGeneracionAnual());
 
+        dto.setMontoMinimoAinvertir(proyecto.getMontoMinimoAinvertir());
+
         dto.setUnidadesDisponibles(proyecto.getUnidadesDisponibles());
 
         dto.setInversionHechaHastaAhora(proyecto.getInversionHechaHastaAhora());
 
         dto.setFechaCreacion(proyecto.getFechaCreacion());
-
-        dto.setDisponible(proyecto.isDisponible());
 
         return dto;
     }

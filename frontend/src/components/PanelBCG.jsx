@@ -1,5 +1,7 @@
+import { useNavegacion } from '../hooks/navegacion'
 import './Estilos/PanelBCG.css'
 export const PanelBCG = () => {
+    const { goToCrearProyecto } = useNavegacion();
     return (
         <div className='conteiner-panel-bcg'>
             <nav>
@@ -11,9 +13,9 @@ export const PanelBCG = () => {
                     Bienvenido, BCG. <br /> ¿Qué deseas hacer?
 
                 </h1>
-                <div className="acciones-administrador">
+                <div className="acciones-bcg">
                     <button className='boton-bcg-buscar-proyectos'>Buscar Proyectos</button>
-                    <button className='boton-bcg-crear-proyectos'>Crear Proyectos</button>
+                    <button className='boton-bcg-crear-proyectos' onClick={goToCrearProyecto}>Crear Proyectos</button>
 
                 </div>
             </section>

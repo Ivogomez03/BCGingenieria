@@ -41,6 +41,9 @@ public class Proyecto {
     @Column(nullable = true)
     private double potencia;
 
+    @Column(nullable = false)
+    private double montoMinimoAinvertir;
+
     @Column(nullable = true)
     private double huellaCarbonoAhorrada;
 
