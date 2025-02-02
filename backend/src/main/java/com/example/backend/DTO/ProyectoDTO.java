@@ -1,6 +1,8 @@
 package com.example.backend.DTO;
 
 import java.util.Date;
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProyectoDTO {
-
+    private UUID idProyecto;
     private String nombre;
     private String descripcion;
     private Date fechaCreacion;

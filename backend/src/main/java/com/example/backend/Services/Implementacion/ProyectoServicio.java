@@ -1,6 +1,7 @@
 package com.example.backend.Services.Implementacion;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class ProyectoServicio {
         if (this.buscarProyecto(proyectoDTO.getNombre()) != null) {
             throw new DataIntegrityViolationException("El nombre del proyecto ya existe");
         }
+        System.out.println("Creando proyecto");
 
         Proyecto proyecto = Proyecto.builder()
                 .nombre(proyectoDTO.getNombre())
@@ -44,10 +46,10 @@ public class ProyectoServicio {
 
     }
 
-    public void eliminarProyecto(String nombreProyecto) {
+    public void eliminarProyecto(UUID idProyecto) {
         // Buscar el Proyecto en la base de datos;
         Proyecto proyecto = proyectoDAO
-                .findByNombre(nombreProyecto)
+                .findById(idProyecto)
                 .get();
         if (proyecto == null) {
             throw new RuntimeException("El proyecto no existe");
@@ -62,7 +64,7 @@ public class ProyectoServicio {
 
     public String modificarProyecto(ProyectoDTO proyectoDTO) {
         Proyecto proyecto = proyectoDAO
-                .findByNombre(proyectoDTO.getNombre())
+                .findById(proyectoDTO.getIdProyecto())
                 .get();
 
         if (proyecto == null) {
@@ -123,21 +125,26 @@ public class ProyectoServicio {
         return proyectoDAO.findByNombre(nombreProyecto).orElse(null);
     }
 
-    public ProyectoDTO buscarProyectoDTO(String nombreProyecto) {
+    public List<ProyectoDTO> buscarProyectosDTO(String nombreProyecto) {
 
-        Proyecto proyecto = proyectoDAO.findByNombre(nombreProyecto).orElse(null);
+        List<Proyecto> proyectos = proyectoDAO.findByNombreNoExact(nombreProyecto);
 
-        if (proyecto == null) {
+        if (proyectos.isEmpty()) {
 
-            throw new RuntimeException("El proyecto no ha sido encontrado");
+            throw new RuntimeException("No hay proyectos con ese nombre");
 
         }
-        return this.convertirAProyectoDTO(proyecto);
+        return proyectos.stream()
+                .map(this::convertirAProyectoDTO)
+                .collect(Collectors.toList());
+
     }
 
     public ProyectoDTO convertirAProyectoDTO(Proyecto proyecto) {
 
         ProyectoDTO dto = new ProyectoDTO();
+
+        dto.setIdProyecto(proyecto.getIdProyecto());
 
         dto.setNombre(proyecto.getNombre());
 

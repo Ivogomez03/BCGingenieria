@@ -38,7 +38,9 @@ export const CrearProyecto = () => {
         try {
             console.log(formData)
             const response = await axios.post("http://localhost:8080/proyecto/crear", formData, {
-                headers: {}
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`, // Incluye el token si es necesario
+                }
             });
             setSuccess(`El proyecto se ha registrado con éxito`);
             setFormData({});
@@ -51,9 +53,6 @@ export const CrearProyecto = () => {
         <>
             <BackGroundCircles />
             <div className="registro-proyecto-container">
-
-                {error && <p className="error">{error}</p>}
-                {success && <p className="success">{success}</p>}
                 <form onSubmit={handleSubmit} className="form-registro-proyecto">
                     <h1>Crear Proyecto</h1>
                     {CamposCrearProyecto.map((campo, index) => (
@@ -71,6 +70,8 @@ export const CrearProyecto = () => {
                             />
                         </div>
                     ))}
+                    {error && <p className="error">{error}</p>}
+                    {success && <p className="success">{success}</p>}
                     <button type="submit" className="boton-registro-proyecto">Crear</button>
                 </form>
             </div>

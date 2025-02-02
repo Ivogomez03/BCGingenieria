@@ -6,7 +6,7 @@ import { Footer } from './components/Footer';
 import { PanelProyectos } from './components/PanelProyectos';
 import { LeasingSolar } from './components/LeasingSolar';
 import { useRef } from 'react';
-import { HashRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './components/Login'
 import { Proyecto } from './components/Proyecto';
 import { PanelAdministrador } from './components/PanelAdmin';
@@ -15,6 +15,8 @@ import BuscarUsuarios from './components/BuscarUsuario';
 import { RegistrarUsuario } from './components/RegistrarUsuario';
 import { PanelBCG } from './components/PanelBCG';
 import { CrearProyecto } from './components/CrearProyecto';
+import BuscarProyecto from './components/BuscarProyecto';
+import ModificarProyecto from './components/ModificarProyecto';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
 
@@ -52,6 +54,8 @@ const MainApp = () => {
         <Route path="/registrar" element={<RegistrarUsuario />} />
         <Route path="/panelBCG" element={<PanelBCG />} />
         <Route path="/crearProyecto" element={<CrearProyecto />} />
+        <Route path="/proyecto/buscarProyecto" element={<BuscarProyecto />} />
+        <Route path="/proyecto/modificarProyecto" element={<ModificarProyecto />} />
 
       </Routes>
     </Router>

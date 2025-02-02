@@ -21,7 +21,7 @@
 }
 
 .cerrar-sesion-admin {
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     width: 8rem;
     color: white;
     border: none;
@@ -48,7 +48,7 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
     width: 12rem;
     color: white;
 }

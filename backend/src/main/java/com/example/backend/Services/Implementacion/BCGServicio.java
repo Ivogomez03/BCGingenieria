@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BCGServicio {
 
-    private BCGDAO bcgDAO;
+    private final BCGDAO bcgDAO;
 
     public BCG buscarBCG(String nombreUsuario) {
 

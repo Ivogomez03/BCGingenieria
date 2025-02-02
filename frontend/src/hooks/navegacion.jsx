@@ -31,7 +31,13 @@ export const useNavegacion = () => {
     const goToCrearProyecto = () => {
         navigate('/crearProyecto')
     }
+    const goToBuscarProyecto = () => {
+        navigate('/proyecto/buscarProyecto')
+    }
+    const goToModificarProyecto = (proyecto) => {
+        navigate('/proyecto/modificarProyecto', { state: proyecto })
+    }
 
 
-    return { goToLogin, goToCrearProyecto, goToApp, goToProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
+    return { goToLogin, goToCrearProyecto, goToBuscarProyecto, goToApp, goToProyecto, goToModificarProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
 }

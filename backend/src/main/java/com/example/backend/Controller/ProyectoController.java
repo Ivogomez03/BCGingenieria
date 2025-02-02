@@ -2,6 +2,8 @@ package com.example.backend.Controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProyectoController {
 
-    private ProyectoServicio proyectoServicio;
-    private BCGServicio bcgServicio;
+    private final ProyectoServicio proyectoServicio;
+    private final BCGServicio bcgServicio;
 
     @PostMapping("/proyecto/crear")
     public ResponseEntity<String> crearProyecto(@RequestBody ProyectoDTO proyectoDTO, Principal principal) {
@@ -38,7 +40,7 @@ public class ProyectoController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tienes permisos para crear proyectos.");
 
         }
-
+        System.out.println("Por crear proyecto");
         try {
 
             String mensajeSalida = proyectoServicio.crearProyecto(proyectoDTO);
@@ -57,9 +59,9 @@ public class ProyectoController {
 
         try {
 
-            ProyectoDTO proyectoBuscado = proyectoServicio.buscarProyectoDTO(nombreProyecto);
+            List<ProyectoDTO> proyectosBuscados = proyectoServicio.buscarProyectosDTO(nombreProyecto);
 
-            return ResponseEntity.ok(proyectoBuscado);
+            return ResponseEntity.ok(proyectosBuscados);
 
         } catch (RuntimeException e) {
 
@@ -69,7 +71,7 @@ public class ProyectoController {
     }
 
     @DeleteMapping("/proyecto/eliminarProyecto")
-    public ResponseEntity<String> eliminarProyecto(@RequestParam String nombreProyecto, Principal principal) {
+    public ResponseEntity<String> eliminarProyecto(@RequestParam UUID idProyecto, Principal principal) {
         String username = principal.getName();
 
         BCG bcg = bcgServicio.buscarBCG(username);
@@ -82,7 +84,7 @@ public class ProyectoController {
 
         try {
 
-            proyectoServicio.eliminarProyecto(nombreProyecto);
+            proyectoServicio.eliminarProyecto(idProyecto);
 
             return ResponseEntity.ok("El proyecto ha sido eliminado correctamente.");
 
