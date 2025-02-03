@@ -8,7 +8,7 @@ export const Footer = () => {
         <footer className="footer-app">
             <div className="contenedor-footer">
                 <div className="secciones-footer">
-                    <img src={getUrlLogo()} alt="Logo BRG" />
+                    <img src={getUrlLogo()} alt="Logo BCG" />
                 </div>
                 <div className="secciones-footer">
                     <h2><strong>Accesos</strong></h2>
