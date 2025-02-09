@@ -3,8 +3,13 @@ import { useCalculo } from "../hooks/calculoPaneles";
 import './Estilos/Proyecto.css'
 import { useNavegacion } from "../hooks/navegacion"
 import { BackGroundCircles } from "./BackGroundCircles";
+import { useLocation } from "react-router-dom";
 const CalculoDePaneles = ({ onSiguiente }) => {
+
     const consumoInputId = useId();
+
+
+
     const { cantidadPaneles, consumo, handleChangeConsumoInput, handleCalcular } = useCalculo();
 
     const handleNext = () => {
@@ -36,13 +41,11 @@ const CalculoDePaneles = ({ onSiguiente }) => {
     );
 };
 
-const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
+const IngresaMonto = ({ panelesNecesarios, onSiguiente, valorKW }) => {
     const selectId = useId();
     const [isTransferenciaEnPesos, setIsTransferenciaEnPesos] = useState(true);
     const [monto, setMonto] = useState("");
-
     const montoMinimo = valorKW;
-
     const handleSelectChange = (e) => {
         const newValue = e.target.value;
         setIsTransferenciaEnPesos(newValue === "TRANSFERENCIABANCARIAENPESOS");
@@ -60,7 +63,7 @@ const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
         if (monto >= montoMinimo) {
             onSiguiente(monto, isTransferenciaEnPesos);
         } else {
-            alert(`El monto mínimo a invertir es ${montoMinimo} USD.`);
+            alert(`El monto mínimo a invertir es ${montoMinimo}.`);
         }
     };
 
@@ -68,7 +71,7 @@ const IngresaMonto = ({ panelesNecesarios, valorKW, onSiguiente }) => {
 
 
         <section className="ingresa-monto-seccion">
-            <h2>Tu monto máximo disponible a invertir es de: $6.721.000 o USD 6.294,77</h2>
+            <h2>Tu monto minimo a invertir es de: {montoMinimo}</h2>
             <label htmlFor={selectId}>Selecciona el tipo de transferencia:</label>
             <select name="select" id={selectId} onChange={handleSelectChange} className="select-ingresa-monto">
                 <option value="TRANSFERENCIABANCARIAENPESOS">Transferencia Bancaria en Pesos</option>
@@ -105,16 +108,17 @@ const ConfirmarInversion = ({ monto, isTransferenciaEnPesos }) => {
 export const Proyecto = () => {
     const [etapa, setEtapa] = useState(1);
     const [cantidadPaneles, setCantidadPaneles] = useState(0);
-    const [valorKW, setValorKW] = useState(7000);
+    const [valorKW, setValorKW] = useState(0);
     const [monto, setMonto] = useState(0);
     const [isTransferenciaEnPesos, setIsTransferenciaEnPesos] = useState(true);
     const { goToApp } = useNavegacion();
     const handleSiguiente = () => setEtapa(etapa + 1);
     const handleAtras = () => setEtapa(etapa - 1);
+    const location = useLocation();
 
-    const avanzarConPaneles = (paneles, valorKW) => {
+    const avanzarConPaneles = (paneles) => {
         setCantidadPaneles(paneles);
-        setValorKW(valorKW);
+        setValorKW(location.state.montoMinimoAinvertir);
         handleSiguiente();
     };
 
@@ -130,8 +134,8 @@ export const Proyecto = () => {
             <main className="main-proyecto">
                 <button className="boton-proyecto-atras" onClick={goToApp}>Volver</button>
                 <section className="proyecto-seccion">
-                    <h1>Nombre del Proyecto</h1>
-                    <h2>Descripción del proyecto</h2>
+                    <h1>{location.state.nombre}</h1>
+                    <h2>{location.state.descripcion}</h2>
                     <div>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de potencia</button>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Ingresa el monto</button>

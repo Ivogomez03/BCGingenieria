@@ -6,47 +6,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-}
 
-.seccion-login img {
-    position: absolute;
-    left: 2rem;
-    top: 2rem;
-    width: 12rem;
-}
-
-.boton-seccion-login-volver {
-    margin-top: 20px;
-    background: linear-gradient(45deg, #00ff87, #60efff);
-    color: #000;
-    font-weight: bold;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(0, 255, 135, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 5px;
-    position: absolute;
-    top: 2rem;
-    right: 2rem;
 }
 
 .seccion-content-login {
     width: 40%;
     height: 60%;
-    border-radius: 20px;
     border: 2px solid rgba(255, 255, 255, 0.7);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     align-items: center;
-    background: linear-gradient(120deg, rgba(128, 0, 255, 0.2) 30%, rgba(128, 0, 255, 0.0) 100%);
+    background-color: #f5f5f5;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -57,10 +26,7 @@
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: black;
     animation: fadeIn 0.8s ease-out;
     text-align: center;
 }
@@ -78,23 +44,23 @@
     max-width: 250px;
     padding: 10px 15px;
     margin: 10px 0;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: #fff;
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease-in-out;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #333;
 }
 
 .formulario-login input:focus {
-    border-color: rgba(128, 0, 255, 0.8);
-    box-shadow: 0 0 10px rgba(128, 0, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.2);
+    outline: none;
+    border-color: #2c5282;
+    box-shadow: 0 0 0 2px rgba(44, 82, 130, 0.1);
 }
 
 .formulario-login input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: #999;
 }
 
 .formulario-login button {
@@ -105,7 +71,7 @@
     font-size: 1rem;
     font-weight: 600;
     color: #fff;
-    background: linear-gradient(120deg, rgba(128, 0, 255, 1), rgba(64, 0, 128, 1));
+    background: #020609;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -114,14 +80,10 @@
 
 .formulario-login button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgba(128, 0, 255, 0.6);
+    box-shadow: 0 0 15px #234167;
+    ;
 }
 
-.formulario-login button {
-    background: linear-gradient(120deg, rgba(128, 0, 255, 1), rgba(64, 0, 128, 1));
-    background-size: 200% 200%;
-    animation: gradientMove 3s infinite;
-}
 
 @keyframes gradientMove {
     0% {

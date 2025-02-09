@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import './Estilos/RegistroUsuario.css'
 import { BackGroundCircles } from './BackGroundCircles'
+import { NavBar } from './NavBar';
+
 const CamposRegistroUsuario = [
     { nombre: "Nombre", tipo: "text", clave: "nombre" },
     { nombre: "Apellido", tipo: "text", clave: "apellido" },
@@ -53,7 +55,7 @@ export const RegistrarUsuario = () => {
 
     return (
         <>
-            <BackGroundCircles />
+            <NavBar />
             <div className="registro-usuario-container">
 
                 {error && <p className="error">{error}</p>}

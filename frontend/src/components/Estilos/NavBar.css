@@ -1,0 +1,138 @@
+/* navbar*/
+
+/* Estilos generales para el navbar */
+nav {
+    width: 100%;
+    display: flex;
+    position: fixed;
+    top: 0;
+    justify-content: space-between;
+    /* Separación entre el logo y los botones */
+    align-items: center;
+    /* Espaciado interno */
+    background-color: #2596be;
+    /* Fondo oscuro */
+    color: #111;
+    /* Texto blanco */
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    padding: 1.5rem;
+    z-index: 1;
+}
+
+.imagen-logo {
+    width: 12rem;
+    cursor: pointer;
+}
+
+nav h1 {
+    padding: 20px 0px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    /* Color blanco */
+    margin: 0;
+}
+
+/* Contenedor de los enlaces principales */
+.nav-links {
+    padding: 5px;
+    display: flex;
+    gap: 15px;
+    /* Espaciado uniforme entre botones */
+    transition: all 0.3s ease;
+}
+
+/* Botones del menú principal */
+.nav-links button {
+    color: #fff;
+    /* Texto blanco */
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    border: none;
+    gap: 2px;
+    padding: 8px 16px;
+    /* Espaciado interno */
+    font-size: 14px;
+    /* Tamaño de fuente */
+    cursor: pointer;
+
+
+}
+
+.nav-links iconos-flecha-abajo {
+    font-size: 24;
+    color: #99999D
+}
+
+.nav-links button,
+.nav-links iconos-flecha-abajo {
+    transition: color ease 0.3s;
+}
+
+/* Hover en botones principales */
+.nav-links button:hover {
+
+    /* Fondo transparente */
+    transform: translateY(-1px);
+    color: #EEE;
+    /* Color violeta claro */
+}
+
+.nav-links iconos-flecha-abajo:hover {
+
+    /* Fondo transparente */
+    color: #2596be;
+    /* Color violeta claro */
+}
+
+/* Contenedor de autenticación */
+.auth-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 400;
+
+    /* Espaciado entre enlaces */
+}
+
+/* Botón "Sign In" */
+.auth-links .registrarse {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: 400;
+}
+
+.auth-links .registrarse:hover {
+    transform: translateY(-1px);
+    color: #EEE;
+    /* Violeta claro al hover */
+}
+
+/* Botón "Try Now" */
+.auth-links .iniciar-sesion {
+    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    width: 8rem;
+    color: white;
+    border: none;
+    color: #fff;
+    border-radius: 20px;
+    font-size: 14px;
+    /* Bordes redondeados */
+    padding: 12px 20px;
+
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auth-links .iniciar-sesion:hover {
+    opacity: 0.9;
+    /* Efecto sutil al hover */
+}

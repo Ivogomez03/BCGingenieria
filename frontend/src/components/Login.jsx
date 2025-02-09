@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavegacion } from '../hooks/navegacion';
 import './Estilos/Login.css';
 import { BackGroundCircles } from '../components/BackGroundCircles'
+import { NavBar } from './NavBar';
 
 export const Login = () => {
     const { goToApp, goToPanelAdmin, goToPanelBCG } = useNavegacion(); // Agrega funciones de navegación personalizadas
@@ -48,12 +49,8 @@ export const Login = () => {
 
     return (
         <>
-            <BackGroundCircles />
+            <NavBar />
             <section className="seccion-login">
-                <img src="./BCG2.png" alt="" />
-                <button className="boton-seccion-login-volver" onClick={goToApp}>
-                    Volver
-                </button>
                 <div className="seccion-content-login">
                     <h1>Iniciar sesión</h1>
                     <form onSubmit={handleLogin} className="formulario-login">

@@ -27,8 +27,9 @@ public class SecurityConfig {
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(authRequest -> authRequest
                                                 .requestMatchers("/", "/index.html", "/assets/**", "/favicon.ico",
-                                                                "/vite.svg", "/BCG2.png", "/MariaTeresa.jpg")
+                                                                "/vite.svg", "/BCG2.png", "/PanelSolar.jpg")
                                                 .permitAll() // Rutas públicas
+                                                .requestMatchers("/proyecto/obtenerTodosLosProyectos").permitAll()
                                                 .requestMatchers("/auth/**").permitAll() // Rutas de autenticación
                                                 .requestMatchers("/admin/**").hasAuthority("ADMIN") // Solo ADMIN
                                                 .requestMatchers("/bcg/**").hasAuthority("BCG") // Solo BCG

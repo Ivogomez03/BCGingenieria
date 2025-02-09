@@ -10,8 +10,8 @@ export const useNavegacion = () => {
     const goToApp = () => {
         navigate('/');
     }
-    const goToProyecto = () => {
-        navigate('/proyecto')
+    const goToProyecto = (proyecto) => {
+        navigate('/proyecto', { state: proyecto })
     }
     const goToPanelAdmin = () => {
         navigate('/panelAdministrador')

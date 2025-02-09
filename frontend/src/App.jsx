@@ -17,8 +17,10 @@ import { PanelBCG } from './components/PanelBCG';
 import { CrearProyecto } from './components/CrearProyecto';
 import BuscarProyecto from './components/BuscarProyecto';
 import ModificarProyecto from './components/ModificarProyecto';
+import { NavBar } from './components/NavBar';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
+  const proyectosRef = useRef(null);
 
   const { mostrarContacto } = useScroll(contactoRef);
   const { shouldRender } = useDesvanecer({ mostrarContacto });
@@ -27,9 +29,9 @@ function App() {
   console.log(shouldRender)
   return (
     <>
-      <BackGroundCircles />
+      <NavBar proyectosRef={proyectosRef} contactoRef={contactoRef} />
       <PaginaPrincipal />
-      <PanelProyectos />
+      <PanelProyectos proyectosRef={proyectosRef} />
       <LeasingSolar />
 
 
