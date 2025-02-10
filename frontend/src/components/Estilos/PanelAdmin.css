@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #1c112b;
+    background: #eee;
     z-index: 2;
 }
 
@@ -21,11 +21,10 @@
 }
 
 .cerrar-sesion-admin {
-    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: white;
     width: 8rem;
-    color: white;
     border: none;
-    color: #fff;
+    color: #000;
     border-radius: 20px;
     font-size: 14px;
     /* Bordes redondeados */
@@ -48,7 +47,7 @@
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: rgba(37, 150, 190);
     width: 12rem;
     color: white;
 }
@@ -65,7 +64,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    background: black;
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;

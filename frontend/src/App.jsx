@@ -1,6 +1,5 @@
 import { Contacto } from './components/Contacto';
 import { PaginaPrincipal } from './components/PaginaPrincipal';
-import { BackGroundCircles } from './components/BackGroundCircles';
 import { useDesvanecer, useScroll } from './hooks/hooksContacto';
 import { Footer } from './components/Footer';
 import { PanelProyectos } from './components/PanelProyectos';
@@ -18,6 +17,7 @@ import { CrearProyecto } from './components/CrearProyecto';
 import BuscarProyecto from './components/BuscarProyecto';
 import ModificarProyecto from './components/ModificarProyecto';
 import { NavBar } from './components/NavBar';
+import { ProtectedRoute } from './components/ProtectedRoute';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
   const proyectosRef = useRef(null);
@@ -49,15 +49,15 @@ const MainApp = () => {
         <Route path="/" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<PaginaPrincipal />} />
-        <Route path="/proyecto" element={<Proyecto />} />
-        <Route path="/panelAdministrador" element={<PanelAdministrador />} />
-        <Route path="/admin/modificarUsuario" element={<ModificarUsuario />} />
-        <Route path="/admin/buscarUsuario" element={<BuscarUsuarios />} />
+        <Route path="/proyecto" element={<ProtectedRoute requiredRole={"USUARIO_GENERAL"}><Proyecto /></ProtectedRoute>} />
+        <Route path="/panelAdministrador" element={<ProtectedRoute requiredRole="ADMIN"><PanelAdministrador /></ProtectedRoute>} />
+        <Route path="/admin/modificarUsuario" element={<ProtectedRoute requiredRole="ADMIN"><ModificarUsuario /></ProtectedRoute>} />
+        <Route path="/admin/buscarUsuario" element={<ProtectedRoute requiredRole="ADMIN"><BuscarUsuarios /></ProtectedRoute>} />
         <Route path="/registrar" element={<RegistrarUsuario />} />
-        <Route path="/panelBCG" element={<PanelBCG />} />
-        <Route path="/crearProyecto" element={<CrearProyecto />} />
-        <Route path="/proyecto/buscarProyecto" element={<BuscarProyecto />} />
-        <Route path="/proyecto/modificarProyecto" element={<ModificarProyecto />} />
+        <Route path="/panelBCG" element={<ProtectedRoute requiredRole="BCG"><PanelBCG /></ProtectedRoute>} />
+        <Route path="/crearProyecto" element={<ProtectedRoute requiredRole="BCG"><CrearProyecto /></ProtectedRoute>} />
+        <Route path="/proyecto/buscarProyecto" element={<ProtectedRoute requiredRole="BCG"><BuscarProyecto /></ProtectedRoute>} />
+        <Route path="/proyecto/modificarProyecto" element={<ProtectedRoute requiredRole="BCG"><ModificarProyecto /></ProtectedRoute>} />
 
       </Routes>
     </Router>

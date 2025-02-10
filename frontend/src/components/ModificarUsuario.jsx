@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import './Estilos/ModificarUsuario.css'
-import { BackGroundCircles } from "./BackGroundCircles";
+
 const ModificarUsuario = () => {
     const location = useLocation();
     const [usuario, setUsuario] = useState({
@@ -46,7 +46,6 @@ const ModificarUsuario = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <section className="seccion-modificar-usuario">
                 <form onSubmit={handleSubmit} className="form-modificar-usuario">
                     <h2>Modificar Usuario</h2>

@@ -130,7 +130,6 @@ export const Proyecto = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <main className="main-proyecto">
                 <button className="boton-proyecto-atras" onClick={goToApp}>Volver</button>
                 <section className="proyecto-seccion">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import './Estilos/CrearProyecto.css'
-import { BackGroundCircles } from './BackGroundCircles'
+
 const CamposCrearProyecto = [
     { nombre: "Nombre", tipo: "text", clave: "nombre" },
     { nombre: "Descripcion", tipo: "text", clave: "descripcion" },
@@ -51,7 +51,6 @@ export const CrearProyecto = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <div className="registro-proyecto-container">
                 <form onSubmit={handleSubmit} className="form-registro-proyecto">
                     <h1>Crear Proyecto</h1>

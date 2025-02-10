@@ -64,6 +64,7 @@ body {
 .contenedor-inputs-contacto label {
     width: 100%;
     text-align: left;
+    color: white;
 }
 
 .contenedor-inputs-contacto input {

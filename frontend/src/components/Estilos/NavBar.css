@@ -116,13 +116,20 @@ nav h1 {
     /* Violeta claro al hover */
 }
 
+.account-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+
 /* Botón "Try Now" */
 .auth-links .iniciar-sesion {
-    background: linear-gradient(120deg, rgba(37, 150, 190, 0.6) 30%, rgba(128, 0, 255, 0) 100%);
+    background: white;
     width: 8rem;
-    color: white;
     border: none;
-    color: #fff;
+    color: #000;
     border-radius: 20px;
     font-size: 14px;
     /* Bordes redondeados */

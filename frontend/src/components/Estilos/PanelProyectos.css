@@ -3,10 +3,8 @@
     font-weight: 600;
     line-height: 1.2;
     margin-bottom: 1.5rem;
-    background: linear-gradient(to right, #ffffff, #e0e0e0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: black;
+
     animation: trasladarX 0.8s ease-out;
     text-align: center;
     position: relative;
@@ -31,7 +29,7 @@
     width: 80%;
     max-width: 400px;
     text-align: center;
-    background: linear-gradient(120deg, #2596be99 30%, #8000ff00 100%);
+    background: #2596be;
     padding: 40px 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     border-radius: 20px;

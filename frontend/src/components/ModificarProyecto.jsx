@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import './Estilos/ModificarProyecto.css'
-import { BackGroundCircles } from "./BackGroundCircles";
+
 
 
 const ModificarProyecto = () => {
@@ -50,7 +50,6 @@ const ModificarProyecto = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <section className="seccion-modificar-proyecto">
                 <form onSubmit={handleSubmit} className="form-modificar-proyecto">
                     <h2>Modificar Proyecto</h2>

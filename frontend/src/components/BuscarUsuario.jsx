@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavegacion } from "../hooks/navegacion";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import './Estilos/BuscarUsuarios.css'
-import { BackGroundCircles } from "./BackGroundCircles";
+
 const BuscarUsuarios = () => {
     const [apellido, setApellido] = useState("");
     const [usuarios, setUsuarios] = useState([]);
@@ -60,7 +60,6 @@ const BuscarUsuarios = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <div className="seccion-buscar-usuario">
                 <h2>Buscar Usuarios por Apellido</h2>
                 <form onSubmit={handleSubmit} className="form-buscar-usuario">

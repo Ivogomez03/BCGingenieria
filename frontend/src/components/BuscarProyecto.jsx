@@ -4,7 +4,7 @@ import { useNavegacion } from "../hooks/navegacion";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import './Estilos/BuscarProyecto.css'
-import { BackGroundCircles } from "./BackGroundCircles";
+
 
 const BuscarProyecto = () => {
     const [nombreProyecto, setNombreProyecto] = useState("");
@@ -61,7 +61,6 @@ const BuscarProyecto = () => {
 
     return (
         <>
-            <BackGroundCircles />
             <div className="seccion-buscar-proyecto">
                 <h2>Buscar proyectos por Nombre</h2>
                 <form onSubmit={handleSubmit} className="form-buscar-proyecto">
