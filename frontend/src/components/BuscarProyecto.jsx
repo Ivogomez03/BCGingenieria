@@ -10,7 +10,7 @@ const BuscarProyecto = () => {
     const [nombreProyecto, setNombreProyecto] = useState("");
     const [proyectos, setProyectos] = useState([]);
     const [error, setError] = useState("");
-    const { goToModificarProyecto } = useNavegacion();
+    const { goToModificarProyecto, goToAgregarInfoInversionProyecto } = useNavegacion();
     const [haBuscado, setHaBuscado] = useState(false);
 
     const handleChange = (e) => {
@@ -57,6 +57,7 @@ const BuscarProyecto = () => {
             alert(`Error al eliminar el proyecto: ${error.response?.data || error.message}`);
         }
     };
+
 
 
     return (
@@ -110,6 +111,7 @@ const BuscarProyecto = () => {
                                     <td>{proyecto.montoMinimoAinvertir}</td>
                                     <td>
                                         <button onClick={() => goToModificarProyecto(proyecto)}><EditIcon /></button>
+                                        <button onClick={() => goToAgregarInfoInversionProyecto(proyecto.idProyecto)}>Agregar Info de Inversión</button>
                                         <button onClick={() => handleEliminar(proyecto.idProyecto)}><DeleteIcon /></button>
                                     </td>
                                 </tr>

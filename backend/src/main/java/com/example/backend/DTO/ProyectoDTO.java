@@ -1,6 +1,7 @@
 package com.example.backend.DTO;
 
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -25,5 +26,6 @@ public class ProyectoDTO {
     private double inversionHechaHastaAhora;
     private double montoMinimoAinvertir;
     private boolean disponible;
+    private List<InfoInversionDTO> listaDeInfoInversiones;
 
 }

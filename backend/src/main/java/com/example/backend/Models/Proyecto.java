@@ -2,7 +2,6 @@ package com.example.backend.Models;
 
 import java.util.Date;
 import java.util.UUID;
-
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -55,4 +54,5 @@ public class Proyecto {
 
     @Column(nullable = true)
     private double inversionHechaHastaAhora;
+
 }

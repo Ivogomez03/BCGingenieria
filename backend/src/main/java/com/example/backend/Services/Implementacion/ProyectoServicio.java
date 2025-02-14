@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import com.example.backend.DTO.InfoInversionDTO;
 import com.example.backend.DTO.ProyectoDTO;
 import com.example.backend.Models.Proyecto;
 import com.example.backend.Repository.ProyectoDAO;
@@ -13,7 +14,9 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ProyectoServicio {
+
     private final ProyectoDAO proyectoDAO;
+    private final InfoInversionesServicio infoInversionesServicio;
 
     public String crearProyecto(ProyectoDTO proyectoDTO) {
 
@@ -46,6 +49,10 @@ public class ProyectoServicio {
 
     }
 
+    public Proyecto buscarProyectoPorId(UUID idProyecto) {
+        return proyectoDAO.findById(idProyecto).orElse(null);
+    }
+
     public void eliminarProyecto(UUID idProyecto) {
         // Buscar el Proyecto en la base de datos;
         Proyecto proyecto = proyectoDAO
@@ -69,7 +76,7 @@ public class ProyectoServicio {
 
         if (proyecto == null) {
 
-            throw new RuntimeException("El usuario no existe, verificar datos ingresados");
+            throw new RuntimeException("El proyecto no existe, verificar datos ingresados");
 
         } else {
 
@@ -165,6 +172,9 @@ public class ProyectoServicio {
         dto.setInversionHechaHastaAhora(proyecto.getInversionHechaHastaAhora());
 
         dto.setFechaCreacion(proyecto.getFechaCreacion());
+        List<InfoInversionDTO> lista = infoInversionesServicio
+                .buscarInfoInversionesPorProyecto(proyecto.getIdProyecto());
+        dto.setListaDeInfoInversiones(lista);
 
         return dto;
     }

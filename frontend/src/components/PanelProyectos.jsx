@@ -23,6 +23,7 @@ export const PanelProyectos = ({ proyectosRef }) => {
                 setCargando(false);
             });
     }, []);
+    console.log(proyectos)
     if (cargando) return <p style={{ 'color': '#000' }}>Cargando proyectos...</p>;
     if (error) return <p style={{ 'color': '#000' }}>{error}</p>;
 

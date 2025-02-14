@@ -18,6 +18,7 @@ import BuscarProyecto from './components/BuscarProyecto';
 import ModificarProyecto from './components/ModificarProyecto';
 import { NavBar } from './components/NavBar';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { AgregarInfoInversion } from './components/AgregarInfoInversion';
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
   const proyectosRef = useRef(null);
@@ -58,6 +59,7 @@ const MainApp = () => {
         <Route path="/crearProyecto" element={<ProtectedRoute requiredRole="BCG"><CrearProyecto /></ProtectedRoute>} />
         <Route path="/proyecto/buscarProyecto" element={<ProtectedRoute requiredRole="BCG"><BuscarProyecto /></ProtectedRoute>} />
         <Route path="/proyecto/modificarProyecto" element={<ProtectedRoute requiredRole="BCG"><ModificarProyecto /></ProtectedRoute>} />
+        <Route path="/proyecto/agregarInfoInversionProyecto" element={<ProtectedRoute requiredRole="BCG"><AgregarInfoInversion /></ProtectedRoute>} />
 
       </Routes>
     </Router>

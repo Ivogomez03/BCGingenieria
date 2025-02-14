@@ -2,7 +2,6 @@ import { useId, useState } from "react";
 import { useCalculo } from "../hooks/calculoPaneles";
 import './Estilos/Proyecto.css'
 import { useNavegacion } from "../hooks/navegacion"
-import { BackGroundCircles } from "./BackGroundCircles";
 import { useLocation } from "react-router-dom";
 const CalculoDePaneles = ({ onSiguiente }) => {
 
@@ -135,6 +134,24 @@ export const Proyecto = () => {
                 <section className="proyecto-seccion">
                     <h1>{location.state.nombre}</h1>
                     <h2>{location.state.descripcion}</h2>
+                    <div className="proyecto-info-inversiones-conteiner">
+                        {location.state.listaDeInfoInversiones.map(info => (
+                            <div key={info.idInfoInversion} className="proyecto-info-inversiones">
+                                <h1>{info.categoria}</h1>
+                                <div className="proyecto-info-inversiones-div">
+                                    <h2>{info.tipo}</h2>
+                                    <ul>
+                                        <li>Inversión inicial: {info.inversionInicial}%</li>
+                                        <li>TIR(Rentabilidad): {info.tir}%</li>
+                                        <li>Años de recupero de inversión: {info.anioRecupero}</li>
+                                        <li>Propiedad: {info.propiedad}</li>
+                                    </ul>
+
+                                </div>
+
+                            </div>))}
+                    </div>
+
                     <div>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(1)}>1. Cálculo de potencia</button>
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Ingresa el monto</button>

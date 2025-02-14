@@ -55,7 +55,17 @@ public class ProyectoController {
     }
 
     @GetMapping("/proyecto/buscarProyectoPorNombre")
-    public ResponseEntity<?> buscarProyecto(@RequestParam String nombreProyecto) {
+    public ResponseEntity<?> buscarProyecto(@RequestParam String nombreProyecto, Principal principal) {
+
+        String username = principal.getName();
+
+        BCG bcg = bcgServicio.buscarBCG(username);
+
+        if (!bcg.getRole().equals(Role.BCG)) {
+
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tienes permisos para buscar proyectos.");
+
+        }
 
         try {
 
@@ -97,17 +107,16 @@ public class ProyectoController {
 
     @PutMapping("/proyecto/modificarProyecto")
     public ResponseEntity<String> modificarProyecto(@RequestBody ProyectoDTO proyectoDTO, Principal principal) {
+        String username = principal.getName();
 
+        BCG bcg = bcgServicio.buscarBCG(username);
+
+        if (!bcg.getRole().equals(Role.BCG)) {
+
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tienes permisos para modificar proyectos.");
+
+        }
         try {
-            String username = principal.getName();
-
-            BCG bcg = bcgServicio.buscarBCG(username);
-
-            if (!bcg.getRole().equals(Role.BCG)) {
-
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("No tienes permisos para modificar proyectos.");
-
-            }
 
             String salidaModificar = proyectoServicio.modificarProyecto(proyectoDTO);
 

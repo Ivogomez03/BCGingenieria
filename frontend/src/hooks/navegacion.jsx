@@ -37,7 +37,10 @@ export const useNavegacion = () => {
     const goToModificarProyecto = (proyecto) => {
         navigate('/proyecto/modificarProyecto', { state: proyecto })
     }
+    const goToAgregarInfoInversionProyecto = (idProyecto) => {
+        navigate('/proyecto/agregarInfoInversionProyecto', { state: { idProyecto: idProyecto } })
+    }
 
 
-    return { goToLogin, goToCrearProyecto, goToBuscarProyecto, goToApp, goToProyecto, goToModificarProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
+    return { goToAgregarInfoInversionProyecto, goToLogin, goToCrearProyecto, goToBuscarProyecto, goToApp, goToProyecto, goToModificarProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
 }
