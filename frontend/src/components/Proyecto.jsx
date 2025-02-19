@@ -1,8 +1,9 @@
-import { useId, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useCalculo } from "../hooks/calculoPaneles";
 import './Estilos/Proyecto.css'
 import { useNavegacion } from "../hooks/navegacion"
 import { useLocation } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 const CalculoDePaneles = ({ onSiguiente }) => {
 
     const consumoInputId = useId();
@@ -94,12 +95,88 @@ const IngresaMonto = ({ panelesNecesarios, onSiguiente, valorKW }) => {
 };
 
 const ConfirmarInversion = ({ monto, isTransferenciaEnPesos }) => {
+    const [formData, setFormData] = useState({
+        nombre: "",
+        apellido: "",
+        email: "",
+    });
+    const [nombreUsuario, setNombreUsuario] = useState('');
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            try {
+                const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica el JWT
+                setNombreUsuario(payload.nombre || "");
+            } catch (error) {
+                console.error("Error al decodificar el token:", error);
+                setNombreUsuario('');
+            }
+        }
+    }, []);
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const enviarCorreo = () => {
+        if (!formData.nombre || !formData.apellido || !formData.email) {
+            alert("Por favor, completa todos los campos.");
+            return;
+        }
+
+        const templateParams = {
+            nombre: formData.nombre,
+            apellido: formData.apellido,
+            email: formData.email,
+            monto: monto,
+            moneda: isTransferenciaEnPesos ? "ARS" : "USD",
+            nombreUsuario: nombreUsuario
+        };
+
+        emailjs
+            .send("service_q6cnl0v", "template_4e7npop", templateParams, "ER4UCb0EFvFuLl0cU")
+            .then((response) => {
+                alert("Correo de confirmación enviado ✅");
+                console.log("Correo enviado con éxito:", response);
+            })
+            .catch((error) => {
+                alert("Error al enviar el correo ❌");
+                console.error("Error:", error);
+            });
+    };
+
     return (
         <section className="confirmar-inversion-seccion">
             <h1>Confirmación de Inversión</h1>
             <h2>Inversión: {isTransferenciaEnPesos ? "ARS" : "USD"} {monto}</h2>
-            <p>Una vez confirmada tu inversión, podrás realizar el pago y ver su estado desde tu cuenta.</p>
-            <button className="boton-confirmar-inversion">Confirmar</button>
+            <p>Ingresa tus datos para confirmar la inversión:</p>
+
+            <input
+                type="text"
+                name="nombre"
+                placeholder="Nombre"
+                value={formData.nombre}
+                onChange={handleChange}
+            />
+            <input
+                type="text"
+                name="apellido"
+                placeholder="Apellido"
+                value={formData.apellido}
+                onChange={handleChange}
+            />
+            <input
+                type="email"
+                name="email"
+                placeholder="Correo electrónico"
+                value={formData.email}
+                onChange={handleChange}
+            />
+
+            <button className="boton-confirmar-inversion" onClick={enviarCorreo}>
+                Confirmar
+            </button>
         </section>
     );
 };
@@ -135,7 +212,7 @@ export const Proyecto = () => {
                     <h1>{location.state.nombre}</h1>
                     <h2>{location.state.descripcion}</h2>
                     <div className="proyecto-info-inversiones-conteiner">
-                        {location.state.listaDeInfoInversiones.map(info => (
+                        {location.state.listaDeInfoInversiones.sort((a, b) => a.categoria.localeCompare(b.categoria)).map(info => (
                             <div key={info.idInfoInversion} className="proyecto-info-inversiones">
                                 <h1>{info.categoria}</h1>
                                 <div className="proyecto-info-inversiones-div">
