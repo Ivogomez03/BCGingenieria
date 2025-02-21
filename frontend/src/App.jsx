@@ -19,10 +19,12 @@ import ModificarProyecto from './components/ModificarProyecto';
 import { NavBar } from './components/NavBar';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { AgregarInfoInversion } from './components/AgregarInfoInversion';
+import { SobreNosotros } from './components/SobreNosotros';
+
 function App() {
   const contactoRef = useRef(null); // Referencia al componente Contacto
   const proyectosRef = useRef(null);
-
+  const sobreNosotrosRef = useRef(null);
   const { mostrarContacto } = useScroll(contactoRef);
   const { shouldRender } = useDesvanecer({ mostrarContacto });
 
@@ -30,10 +32,11 @@ function App() {
   console.log(shouldRender)
   return (
     <>
-      <NavBar proyectosRef={proyectosRef} contactoRef={contactoRef} />
+      <NavBar proyectosRef={proyectosRef} contactoRef={contactoRef} sobreNosotrosRef={sobreNosotrosRef} />
       <PaginaPrincipal />
       <PanelProyectos proyectosRef={proyectosRef} />
       <LeasingSolar />
+      <SobreNosotros sobreNosotrosRef={sobreNosotrosRef} />
 
 
       <div style={{ width: '100%', height: '100vh' }} ref={contactoRef}>

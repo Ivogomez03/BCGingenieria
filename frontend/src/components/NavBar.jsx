@@ -4,7 +4,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import "./Estilos/NavBar.css";
 import { useNavegacion } from "../hooks/navegacion";
 
-export const NavBar = ({ proyectosRef, contactoRef }) => {
+export const NavBar = ({ proyectosRef, contactoRef, sobreNosotrosRef }) => {
     const { goToLogin, goToRegistrarUsuario, goToApp } = useNavegacion();
     const [usuario, setUsuario] = useState(null);
 
@@ -38,23 +38,18 @@ export const NavBar = ({ proyectosRef, contactoRef }) => {
 
     return (
         <nav>
+
             <img src="/BCG2.png" className="imagen-logo" alt="Logo BCG Ingeniería" onClick={goToApp} />
 
             <div className="nav-links">
                 <button onClick={() => scrollToSection(proyectosRef)}>
                     Proyectos <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
                 </button>
-                <button>
-                    Servicios <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
-                </button>
-                <button>
-                    Formas de contrato <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
-                </button>
                 <button onClick={() => scrollToSection(contactoRef)}>
                     Contacto <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
                 </button>
-                <button>
-                    Historia <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
+                <button onClick={() => scrollToSection(sobreNosotrosRef)}>
+                    Sobre Nosotros <KeyboardArrowDownIcon className="iconos-flecha-abajo" />
                 </button>
             </div>
 

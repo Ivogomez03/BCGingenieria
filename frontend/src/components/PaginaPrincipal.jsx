@@ -11,7 +11,9 @@ export const PaginaPrincipal = () => {
 
             <section className='seccion-medio'>
                 <h1>El futuro de la energía<br />está en tus manos</h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur voluptas doloribus vel quaerat minus saepe iure facere laborum! Illo, quod laborum earum sapiente minima mollitia. Quidem provident dicta maiores explicabo!</p>
+                <p>Una plataforma web diseñada para gestionar proyectos de energía renovable,
+                    conectando de manera eficiente a inversores, desarrolladores y usuarios interesados en iniciativas sostenibles,
+                    facilitando la toma de decisiones y optimizando la gestión de las inversiones.</p>
                 <div className='botones'>
                     <button className='iniciate'>Iniciate</button>
                     <button className='explorar'>Explorar plataforma</button>
