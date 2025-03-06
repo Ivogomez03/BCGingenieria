@@ -5,11 +5,11 @@ import './Estilos/CrearProyecto.css'
 const CamposCrearProyecto = [
     { nombre: "Nombre", tipo: "text", clave: "nombre" },
     { nombre: "Descripcion", tipo: "text", clave: "descripcion" },
-    { nombre: "Fecha Creacion", tipo: "date", clave: "fechaCreacion" },
     { nombre: "Precio KW", tipo: "number", clave: "precioKW" },
     { nombre: "Potencia", tipo: "number", clave: "potencia" },
     { nombre: "Huella de carbono ahorrada", tipo: "number", clave: "huellaCarbonoAhorrada" },
     { nombre: "Generacion anual", tipo: "number", clave: "generacionAnual" },
+    { nombre: "Url imagen mas info", tipo: "text", clave: "urlMasInfoImagen" },
     { nombre: "Unidades disponibles", tipo: "number", clave: "unidadesDisponibles" },
     { nombre: "Inversion hecha hasta ahora", tipo: "number", clave: "inversionHechaHastaAhora" },
     { nombre: "Monto minimo a invertir", tipo: "number", clave: "montoMinimoAinvertir" },

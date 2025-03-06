@@ -34,8 +34,8 @@ public class ProyectoServicio {
                 .generacionAnual(proyectoDTO.getGeneracionAnual())
                 .unidadesDisponibles(proyectoDTO.getUnidadesDisponibles())
                 .inversionHechaHastaAhora(proyectoDTO.getInversionHechaHastaAhora())
-                .fechaCreacion(proyectoDTO.getFechaCreacion())
                 .montoMinimoAinvertir(proyectoDTO.getMontoMinimoAinvertir())
+                .urlMasInfoImagen(proyectoDTO.getUrlMasInfoImagen())
                 .disponible(true)
                 .build();
 
@@ -98,7 +98,7 @@ public class ProyectoServicio {
 
             proyecto.setMontoMinimoAinvertir(proyectoDTO.getMontoMinimoAinvertir());
 
-            proyecto.setFechaCreacion(proyectoDTO.getFechaCreacion());
+            proyecto.setUrlMasInfoImagen(proyectoDTO.getUrlMasInfoImagen());
 
             proyecto.setDisponible(proyectoDTO.isDisponible());
 
@@ -171,7 +171,8 @@ public class ProyectoServicio {
 
         dto.setInversionHechaHastaAhora(proyecto.getInversionHechaHastaAhora());
 
-        dto.setFechaCreacion(proyecto.getFechaCreacion());
+        dto.setUrlMasInfoImagen(proyecto.getUrlMasInfoImagen());
+
         List<InfoInversionDTO> lista = infoInversionesServicio
                 .buscarInfoInversionesPorProyecto(proyecto.getIdProyecto());
         dto.setListaDeInfoInversiones(lista);

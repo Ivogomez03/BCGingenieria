@@ -1,6 +1,5 @@
 package com.example.backend.Models;
 
-import java.util.Date;
 import java.util.UUID;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
@@ -29,9 +28,6 @@ public class Proyecto {
     private String descripcion;
 
     @Column(nullable = false)
-    private Date fechaCreacion;
-
-    @Column(nullable = false)
     private boolean disponible;
 
     @Column(nullable = false)
@@ -54,5 +50,8 @@ public class Proyecto {
 
     @Column(nullable = true)
     private double inversionHechaHastaAhora;
+
+    @Column(nullable = true)
+    private String urlMasInfoImagen;
 
 }

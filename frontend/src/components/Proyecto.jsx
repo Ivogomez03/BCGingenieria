@@ -42,7 +42,7 @@ const CalculoDePaneles = ({ onSiguiente, valorKW }) => {
 };
 
 
-const ConfirmarInversion = ({ monto }) => {
+const ConfirmarInversion = () => {
     const [formData, setFormData] = useState({
         nombre: "",
         apellido: "",
@@ -55,7 +55,7 @@ const ConfirmarInversion = ({ monto }) => {
         if (token) {
             try {
                 const payload = JSON.parse(atob(token.split(".")[1])); // Decodifica el JWT
-                setNombreUsuario(payload.nombre || "");
+                setNombreUsuario(payload.sub || "");
             } catch (error) {
                 console.error("Error al decodificar el token:", error);
                 setNombreUsuario('');
@@ -77,8 +77,6 @@ const ConfirmarInversion = ({ monto }) => {
             nombre: formData.nombre,
             apellido: formData.apellido,
             email: formData.email,
-            monto: monto,
-            moneda: "ARS",
             nombreUsuario: nombreUsuario
         };
 
@@ -100,6 +98,7 @@ const ConfirmarInversion = ({ monto }) => {
             <p>Ingresa tus datos para contactarte con la empresa:</p>
 
             <input
+                className="input-secciones-proyecto"
                 type="text"
                 name="nombre"
                 placeholder="Nombre"
@@ -107,6 +106,7 @@ const ConfirmarInversion = ({ monto }) => {
                 onChange={handleChange}
             />
             <input
+                className="input-secciones-proyecto"
                 type="text"
                 name="apellido"
                 placeholder="Apellido"
@@ -114,6 +114,7 @@ const ConfirmarInversion = ({ monto }) => {
                 onChange={handleChange}
             />
             <input
+                className="input-secciones-proyecto"
                 type="email"
                 name="email"
                 placeholder="Correo electrónico"
@@ -130,7 +131,6 @@ const ConfirmarInversion = ({ monto }) => {
 
 export const Proyecto = () => {
     const [etapa, setEtapa] = useState(1);
-    const [monto, setMonto] = useState(0);
     const [cantidadPaneles, setCantidadPaneles] = useState(0);
     const { goToApp } = useNavegacion();
     const handleSiguiente = () => setEtapa(etapa + 1);
@@ -150,7 +150,10 @@ export const Proyecto = () => {
                     <h1>{location.state.nombre}</h1>
                     <h2>{location.state.descripcion}</h2>
                     <div className="proyecto-info-inversiones-conteiner">
-                        {location.state.listaDeInfoInversiones.sort((a, b) => a.categoria.localeCompare(b.categoria)).map(info => (
+                        {location.state.listaDeInfoInversiones.sort((a, b) => {
+                            const ordenPersonalizado = ["Comercio Industria", "Vecinos", "Grandes Clientes"];
+                            return ordenPersonalizado.indexOf(a.categoria) - ordenPersonalizado.indexOf(b.categoria);
+                        }).map(info => (
                             <div key={info.idInfoInversion} className="proyecto-info-inversiones">
                                 <h1>{info.categoria}</h1>
                                 <div className="proyecto-info-inversiones-div">
@@ -174,7 +177,7 @@ export const Proyecto = () => {
 
                     {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} valorKW={location.state.montoMinimoAinvertir} />}
                     {etapa === 2 && (
-                        <ConfirmarInversion monto={monto} />
+                        <ConfirmarInversion />
                     )}
 
                     {etapa > 1 && <button className="boton-proyecto-atras" onClick={handleAtras}>Atrás</button>}

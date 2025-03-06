@@ -132,3 +132,52 @@
         transform: translateX(0);
     }
 }
+
+
+/* Modal - fondo oscuro */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    /* Oscurece el fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: scroll;
+}
+
+/* Imagen dentro del modal */
+.modal-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Transición para que el modal se vea mejor */
+.modal-overlay,
+.modal-content {
+    animation: fadeIn2 0.3s ease-in-out;
+}
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

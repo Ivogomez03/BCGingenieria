@@ -10,11 +10,11 @@ const ModificarProyecto = () => {
     const [proyecto, setProyecto] = useState({
         nombre: location.state?.nombre || "",
         descripcion: location.state?.descripcion || "",
-        fechaCreacion: location.state?.fechaCreacion || "",
         precioKW: location.state?.precioKW || "",
         potencia: location.state?.potencia || "",
         huellaCarbonoAhorrada: location.state?.huellaCarbonoAhorrada || "",
         generacionAnual: location.state?.generacionAnual || "",
+        urlMasInfoImagen: location.state?.urlMasInfoImagen || "",
         unidadesDisponibles: location.state?.unidadesDisponibles || "",
         inversionHechaHastaAhora: location.state?.inversionHechaHastaAhora || "",
         montoMinimoAinvertir: location.state?.montoMinimoAinvertir || "",
@@ -73,13 +73,12 @@ const ModificarProyecto = () => {
                         />
                     </label>
                     <label>
-                        Fecha creación:
+                        Url Imagen Mas Info:
                         <input
-                            type="date"
-                            name="fechaCreacion"
-                            value={proyecto.fechaCreacion}
+                            type="text"
+                            name="urlMasInfoImagen"
+                            value={proyecto.urlMasInfoImagen}
                             onChange={handleChange}
-                            required
                         />
                     </label>
                     <label>

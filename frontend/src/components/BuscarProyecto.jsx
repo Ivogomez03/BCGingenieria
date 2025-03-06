@@ -85,7 +85,6 @@ const BuscarProyecto = () => {
                             <tr>
                                 <th>Nombre</th>
                                 <th>Descripcion</th>
-                                <th>Fecha creacion</th>
                                 <th>Precio KW</th>
                                 <th>Potencia</th>
                                 <th>Huella carbono ahorrada</th>
@@ -101,7 +100,6 @@ const BuscarProyecto = () => {
                                 <tr key={proyecto.idProyecto}>
                                     <td>{proyecto.nombre}</td>
                                     <td>{proyecto.descripcion}</td>
-                                    <td>{proyecto.fechaCreacion}</td>
                                     <td>{proyecto.precioKW}</td>
                                     <td>{proyecto.potencia}</td>
                                     <td>{proyecto.huellaCarbonoAhorrada}</td>

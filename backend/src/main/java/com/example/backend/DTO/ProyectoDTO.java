@@ -17,7 +17,6 @@ public class ProyectoDTO {
     private UUID idProyecto;
     private String nombre;
     private String descripcion;
-    private Date fechaCreacion;
     private double precioKW;
     private double potencia;
     private double huellaCarbonoAhorrada;
@@ -27,5 +26,6 @@ public class ProyectoDTO {
     private double montoMinimoAinvertir;
     private boolean disponible;
     private List<InfoInversionDTO> listaDeInfoInversiones;
+    private String urlMasInfoImagen;
 
 }
