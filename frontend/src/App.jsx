@@ -8,28 +8,24 @@ import { useRef } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Login } from './components/Login'
 import { Proyecto } from './components/Proyecto';
-import { PanelAdministrador } from './components/PanelAdmin';
-import ModificarUsuario from './components/ModificarUsuario';
-import BuscarUsuarios from './components/BuscarUsuario';
-import { RegistrarUsuario } from './components/RegistrarUsuario';
+import { PanelAdministrador } from './components/Admin/PanelAdmin';
+import ModificarUsuario from './components/Usuario/ModificarUsuario';
+import BuscarUsuarios from './components/Usuario/BuscarUsuario';
+import { RegistrarUsuario } from './components/Usuario/RegistrarUsuario';
 import { PanelBCG } from './components/PanelBCG';
-import { CrearProyecto } from './components/CrearProyecto';
-import BuscarProyecto from './components/BuscarProyecto';
-import ModificarProyecto from './components/ModificarProyecto';
 import { NavBar } from './components/NavBar';
 import { ProtectedRoute } from './components/ProtectedRoute';
-import { AgregarInfoInversion } from './components/AgregarInfoInversion';
+import { MainPage } from './components/Institucional/MainPage';
 import { SobreNosotros } from './components/SobreNosotros';
+import { MasInfoMariaTeresa } from './components/MasInfoMariaTeresa';
 
-function App() {
-  const contactoRef = useRef(null); // Referencia al componente Contacto
+function ComunidadesSolares() {
+  const contactoRef = useRef(null);
   const proyectosRef = useRef(null);
   const sobreNosotrosRef = useRef(null);
   const { mostrarContacto } = useScroll(contactoRef);
   const { shouldRender } = useDesvanecer({ mostrarContacto });
 
-
-  console.log(shouldRender)
   return (
     <>
       <NavBar proyectosRef={proyectosRef} contactoRef={contactoRef} sobreNosotrosRef={sobreNosotrosRef} />
@@ -38,7 +34,6 @@ function App() {
       <LeasingSolar />
       <SobreNosotros sobreNosotrosRef={sobreNosotrosRef} />
 
-
       <div style={{ width: '100%', height: '100vh' }} ref={contactoRef}>
         {shouldRender && <Contacto seOculta={!mostrarContacto} />}
       </div>
@@ -46,23 +41,22 @@ function App() {
     </>
   );
 }
+
 const MainApp = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<PaginaPrincipal />} />
+        <Route path="/comunidadesSolares" element={<ComunidadesSolares />} />
         <Route path="/proyecto" element={<ProtectedRoute requiredRole={"USUARIO_GENERAL"}><Proyecto /></ProtectedRoute>} />
         <Route path="/panelAdministrador" element={<ProtectedRoute requiredRole="ADMIN"><PanelAdministrador /></ProtectedRoute>} />
         <Route path="/admin/modificarUsuario" element={<ProtectedRoute requiredRole="ADMIN"><ModificarUsuario /></ProtectedRoute>} />
         <Route path="/admin/buscarUsuario" element={<ProtectedRoute requiredRole="ADMIN"><BuscarUsuarios /></ProtectedRoute>} />
         <Route path="/registrar" element={<RegistrarUsuario />} />
         <Route path="/panelBCG" element={<ProtectedRoute requiredRole="BCG"><PanelBCG /></ProtectedRoute>} />
-        <Route path="/crearProyecto" element={<ProtectedRoute requiredRole="BCG"><CrearProyecto /></ProtectedRoute>} />
-        <Route path="/proyecto/buscarProyecto" element={<ProtectedRoute requiredRole="BCG"><BuscarProyecto /></ProtectedRoute>} />
-        <Route path="/proyecto/modificarProyecto" element={<ProtectedRoute requiredRole="BCG"><ModificarProyecto /></ProtectedRoute>} />
-        <Route path="/proyecto/agregarInfoInversionProyecto" element={<ProtectedRoute requiredRole="BCG"><AgregarInfoInversion /></ProtectedRoute>} />
+        <Route path="/proyecto/MasInfoMariaTeresa" element={<ProtectedRoute requiredRole="USUARIO_GENERAL"><MasInfoMariaTeresa /></ProtectedRoute>} />
 
       </Routes>
     </Router>

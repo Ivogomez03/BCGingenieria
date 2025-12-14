@@ -9,7 +9,17 @@ body {
 
 
 
-
+.seccion-medio-img {
+    max-width: 100%;
+    /* Ensures image doesn't overflow container */
+    height: auto;
+    /* Maintains aspect ratio */
+    margin: 0 auto;
+    /* This will center the image */
+    display: block;
+    /* Ensures the margin: 0 auto works */
+    transform: scale(0.75);
+}
 
 .container {
 

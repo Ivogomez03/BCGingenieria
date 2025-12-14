@@ -39,7 +39,7 @@ export const NavBar = ({ proyectosRef, contactoRef, sobreNosotrosRef }) => {
     return (
         <nav>
 
-            <img src="/BCG2.png" className="imagen-logo" alt="Logo BCG Ingeniería" onClick={goToApp} />
+            <img src="/logo32.png" className="imagen-logo" alt="Logo BCG Ingeniería" onClick={goToApp} />
 
             <div className="nav-links">
                 <button onClick={() => scrollToSection(proyectosRef)}>

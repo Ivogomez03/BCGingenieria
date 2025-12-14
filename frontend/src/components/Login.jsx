@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavegacion } from '../hooks/navegacion';
 import './Estilos/Login.css';
-import { BackGroundCircles } from '../components/BackGroundCircles'
 import { NavBar } from './NavBar';
 
 export const Login = () => {

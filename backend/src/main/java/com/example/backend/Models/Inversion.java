@@ -28,10 +28,6 @@ public class Inversion {
     @JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario")
     private UsuarioGeneral usuarioInversor;
 
-    @OneToOne
-    @JoinColumn(name = "idProyecto", referencedColumnName = "idProyecto")
-    private Proyecto proyecto;
-
     @Column(nullable = false)
     private Date fechaVenta;
 

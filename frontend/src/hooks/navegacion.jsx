@@ -8,11 +8,9 @@ export const useNavegacion = () => {
     };
 
     const goToApp = () => {
-        navigate('/');
+        navigate('/comunidadesSolares');
     }
-    const goToProyecto = (proyecto) => {
-        navigate('/proyecto', { state: proyecto })
-    }
+
     const goToPanelAdmin = () => {
         navigate('/panelAdministrador')
     }
@@ -28,19 +26,15 @@ export const useNavegacion = () => {
     const goToPanelBCG = () => {
         navigate('/panelBCG')
     }
-    const goToCrearProyecto = () => {
-        navigate('/crearProyecto')
+
+    const goToProyecto = () => {
+        navigate('/proyecto')
     }
-    const goToBuscarProyecto = () => {
-        navigate('/proyecto/buscarProyecto')
-    }
-    const goToModificarProyecto = (proyecto) => {
-        navigate('/proyecto/modificarProyecto', { state: proyecto })
-    }
-    const goToAgregarInfoInversionProyecto = (idProyecto) => {
-        navigate('/proyecto/agregarInfoInversionProyecto', { state: { idProyecto: idProyecto } })
+
+    const goToMasInfoMariaTeresa = () => {
+        navigate('/proyecto/MasInfoMariaTeresa')
     }
 
 
-    return { goToAgregarInfoInversionProyecto, goToLogin, goToCrearProyecto, goToBuscarProyecto, goToApp, goToProyecto, goToModificarProyecto, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
+    return { goToProyecto, goToMasInfoMariaTeresa, goToLogin, goToApp, goToPanelAdmin, goToPanelBCG, goToModificarUsuario, goToBuscarUsuario, goToRegistrarUsuario };
 }

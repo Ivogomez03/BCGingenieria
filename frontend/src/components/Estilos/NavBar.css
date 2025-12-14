@@ -23,6 +23,8 @@ nav {
 .imagen-logo {
     width: 12rem;
     cursor: pointer;
+    transform: scale(1.5);
+    margin-left: 2.5rem;
 }
 
 nav h1 {

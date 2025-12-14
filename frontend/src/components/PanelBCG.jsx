@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavegacion } from '../hooks/navegacion'
 import './Estilos/PanelBCG.css'
 export const PanelBCG = () => {
-    const { goToCrearProyecto, goToBuscarProyecto, goToApp } = useNavegacion();
+    const { goToApp } = useNavegacion();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -27,11 +27,6 @@ export const PanelBCG = () => {
                     Bienvenido, BCG. <br /> ¿Qué deseas hacer?
 
                 </h1>
-                <div className="acciones-bcg">
-                    <button className='boton-bcg-buscar-proyectos' onClick={goToBuscarProyecto}>Buscar Proyectos</button>
-                    <button className='boton-bcg-crear-proyectos' onClick={goToCrearProyecto}>Crear Proyectos</button>
-
-                </div>
             </section>
 
         </div>

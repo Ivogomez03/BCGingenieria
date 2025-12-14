@@ -2,8 +2,8 @@ import { useEffect, useId, useState } from "react";
 import { useCalculo } from "../hooks/calculoPaneles";
 import './Estilos/Proyecto.css'
 import { useNavegacion } from "../hooks/navegacion"
-import { useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+
 const CalculoDePaneles = ({ onSiguiente, valorKW }) => {
 
     const consumoInputId = useId();
@@ -11,12 +11,21 @@ const CalculoDePaneles = ({ onSiguiente, valorKW }) => {
 
 
     const { cantidadPaneles, consumo, handleChangeConsumoInput, handleCalcular } = useCalculo();
+    const [errorCalculo, setErrorCalculo] = useState("");
+
+    const mostrarErrorTemporal = (mensaje) => {
+        setErrorCalculo(mensaje);
+        setTimeout(() => {
+            setErrorCalculo("");
+        }, 2000); // Elimina el mensaje después de 2 segundos
+    };
 
     const handleNext = () => {
         if (cantidadPaneles > 0) {
+            mostrarErrorTemporal("");
             onSiguiente(cantidadPaneles, valorKW); // Pasar cantidad de paneles y valor de KW al siguiente paso
         } else {
-            alert("Por favor, calcula la cantidad de paneles primero.");
+            mostrarErrorTemporal("Por favor, calcula la cantidad de paneles primero.");
         }
     };
 
@@ -37,6 +46,7 @@ const CalculoDePaneles = ({ onSiguiente, valorKW }) => {
             {cantidadPaneles > 0 && <h2>Cantidad de potencia: {Number(cantidadPaneles.toFixed(2))}KW</h2>}
             <h3>El valor de un KW es de ${valorKW} USD</h3>
             <button className="boton-siguiente" onClick={handleNext}>Siguiente</button>
+            {errorCalculo && <p className="error-mensaje">{errorCalculo}</p>}
         </section>
     );
 };
@@ -49,6 +59,14 @@ const ConfirmarInversion = () => {
         email: "",
     });
     const [nombreUsuario, setNombreUsuario] = useState('');
+    const [errorInversion, setErrorInversion] = useState("");
+
+    const mostrarErrorTemporal = (mensaje) => {
+        setErrorInversion(mensaje);
+        setTimeout(() => {
+            setErrorInversion("");
+        }, 2000); // Elimina el mensaje después de 2 segundos
+    };
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -69,7 +87,7 @@ const ConfirmarInversion = () => {
 
     const enviarCorreo = () => {
         if (!formData.nombre || !formData.apellido || !formData.email) {
-            alert("Por favor, completa todos los campos.");
+            mostrarErrorTemporal("Por favor, completa todos los campos.");
             return;
         }
 
@@ -83,11 +101,11 @@ const ConfirmarInversion = () => {
         emailjs
             .send("service_q6cnl0v", "template_4e7npop", templateParams, "ER4UCb0EFvFuLl0cU")
             .then((response) => {
-                alert("Correo de confirmación enviado ✅");
+                mostrarErrorTemporal("Correo de confirmación enviado ✅");
                 console.log("Correo enviado con éxito:", response);
             })
             .catch((error) => {
-                alert("Error al enviar el correo ❌");
+                mostrarErrorTemporal("Error al enviar el correo ❌");
                 console.error("Error:", error);
             });
     };
@@ -125,6 +143,7 @@ const ConfirmarInversion = () => {
             <button className="boton-confirmar-inversion" onClick={enviarCorreo}>
                 Confirmar
             </button>
+            {errorInversion && <p className="error-mensaje">{errorInversion}</p>}
         </section>
     );
 };
@@ -135,7 +154,6 @@ export const Proyecto = () => {
     const { goToApp } = useNavegacion();
     const handleSiguiente = () => setEtapa(etapa + 1);
     const handleAtras = () => setEtapa(etapa - 1);
-    const location = useLocation();
 
     const avanzarConPaneles = (paneles) => {
         setCantidadPaneles(paneles);
@@ -147,27 +165,52 @@ export const Proyecto = () => {
             <main className="main-proyecto">
                 <button className="boton-proyecto-atras" onClick={goToApp}>Volver</button>
                 <section className="proyecto-seccion">
-                    <h1>{location.state.nombre}</h1>
-                    <h2>{location.state.descripcion}</h2>
+                    <h1>Maria Teresa</h1>
+                    <h2></h2>
                     <div className="proyecto-info-inversiones-conteiner">
-                        {location.state.listaDeInfoInversiones.sort((a, b) => {
-                            const ordenPersonalizado = ["Comercio Industria", "Vecinos", "Grandes Clientes"];
-                            return ordenPersonalizado.indexOf(a.categoria) - ordenPersonalizado.indexOf(b.categoria);
-                        }).map(info => (
-                            <div key={info.idInfoInversion} className="proyecto-info-inversiones">
-                                <h1>{info.categoria}</h1>
-                                <div className="proyecto-info-inversiones-div">
-                                    <h2>{info.tipo}</h2>
-                                    <ul>
-                                        <li>Inversión inicial: {info.inversionInicial}%</li>
-                                        <li>TIR(Rentabilidad): {info.tir}%</li>
-                                        <li>Años de recupero de inversión: {info.anioRecupero}</li>
-                                        <li>Propiedad: {info.propiedad}</li>
-                                    </ul>
 
-                                </div>
+                        <div className="proyecto-info-inversiones">
+                            <h1>Comercio Industria</h1>
+                            <div className="proyecto-info-inversiones-div">
+                                <h2>Compra de contado</h2>
+                                <ul>
+                                    <li>Inversión inicial: 100%</li>
+                                    <li>TIR(Rentabilidad): 30%</li>
+                                    <li>Años de recupero de inversión: 5</li>
+                                    <li>Propiedad: Inmediata</li>
+                                </ul>
 
-                            </div>))}
+                            </div>
+
+                        </div>
+                        <div className="proyecto-info-inversiones">
+                            <h1>Vecinos</h1>
+                            <div className="proyecto-info-inversiones-div">
+                                <h2>Compra de contado</h2>
+                                <ul>
+                                    <li>Inversión inicial: 100%</li>
+                                    <li>TIR(Rentabilidad): 31%</li>
+                                    <li>Años de recupero de inversión: 4</li>
+                                    <li>Propiedad: Inmediata</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
+                        <div className="proyecto-info-inversiones">
+                            <h1>Grandes Clientes</h1>
+                            <div className="proyecto-info-inversiones-div">
+                                <h2>Compra de contado</h2>
+                                <ul>
+                                    <li>Inversión inicial: 100%</li>
+                                    <li>TIR(Rentabilidad): 100%</li>
+                                    <li>Años de recupero de inversión: 10</li>
+                                    <li>Propiedad: Inmediata</li>
+                                </ul>
+
+                            </div>
+
+                        </div>
                     </div>
 
                     <div>
@@ -175,7 +218,7 @@ export const Proyecto = () => {
                         <button className="boton-cambio-seccion" onClick={() => setEtapa(2)}>2. Confirma tu inversión</button>
                     </div>
 
-                    {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} valorKW={location.state.montoMinimoAinvertir} />}
+                    {etapa === 1 && <CalculoDePaneles onSiguiente={avanzarConPaneles} valorKW={1200} />}
                     {etapa === 2 && (
                         <ConfirmarInversion />
                     )}

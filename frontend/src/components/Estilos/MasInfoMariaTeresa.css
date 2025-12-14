@@ -1,0 +1,91 @@
+.seccion-masInfo-mariaTeresa {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+    background-color: #2596be;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.seccion-masInfo-mariaTeresa h1 {
+    color: #fff;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.div-masInfo-mariaTeresa {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+.div-masInfo-mariaTeresa h1 {
+    color: black;
+    font-size: 1.8rem;
+    text-align: left;
+    margin-bottom: 15px;
+}
+
+.div-masInfo-mariaTeresa p,
+.div-masInfo-mariaTeresa li {
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+}
+
+.div-masInfo-mariaTeresa ul {
+    padding-left: 20px;
+    list-style-type: disc;
+    color: #333;
+}
+
+
+.div-masInfo-mariaTeresa h2 {
+    color: black;
+    text-align: left;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+.div-masInfo-mariaTeresa ol {
+    list-style-type: decimal;
+    padding-left: 20px;
+    color: #333;
+}
+
+
+.div-masInfo-mariaTeresa h1,
+.div-masInfo-mariaTeresa p,
+.div-masInfo-mariaTeresa li,
+.div-masInfo-mariaTeresa ul {
+    margin-bottom: 15px;
+}
+
+
+
+
+@media (max-width: 768px) {
+    .seccion-masInfo-mariaTeresa {
+        padding: 10px;
+    }
+
+    .div-masInfo-mariaTeresa {
+        padding: 15px;
+    }
+
+    .div-masInfo-mariaTeresa h1 {
+        font-size: 1.5rem;
+    }
+
+    .div-masInfo-mariaTeresa h2 {
+        font-size: 1.3rem;
+    }
+
+    .div-masInfo-mariaTeresa {
+        padding: 15px;
+    }
+}
