@@ -2,7 +2,6 @@ import { getUrlLogo } from "../hooks/getUrlLogo"
 import InstagramIcon from '@mui/icons-material/Instagram';
 import './Estilos/Footer.css'
 export const Footer = () => {
-    console.log("Footer renderizado")
     return (
 
         <footer className="footer-app">
