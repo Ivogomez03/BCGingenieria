@@ -12,6 +12,12 @@
     --max-width: 1200px;
 }
 
+section[id],
+footer[id] {
+    scroll-margin-top: 100px;
+
+}
+
 .main-page-container {
 
     width: 100%;
@@ -43,6 +49,10 @@
     height: 100%;
     margin: 0 auto;
 
+}
+
+.main-page-header-container li {
+    cursor: pointer;
 }
 
 .main-page-header-container .logo {
@@ -105,6 +115,7 @@
 .main-page-seccion-4,
 .main-page-seccion-5,
 .main-page-seccion-6,
+.main-page-seccion-contacto,
 .main-page-footer {
     width: 100%;
     min-height: 500px;
@@ -113,6 +124,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+
 }
 
 .main-page-seccion-1 .content {
@@ -241,7 +254,7 @@
 
 
 .main-page-seccion-principal {
-    background-image: url("/fondo-seccion-principal.jpg");
+    background-image: url("/planta-energia.jpg");
 
     background-size: cover;
 
@@ -312,8 +325,7 @@
 
 
 .main-page-seccion-2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.65),
-            rgba(0, 0, 0, 0.65)),
+    background-image:
         url("/planeta.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -337,7 +349,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 0;
 }
 
@@ -486,8 +498,7 @@
     padding: 100px 0;
     background-color: var(--white);
 
-    background-image: linear-gradient(rgba(0, 0, 0, 0.65),
-            rgba(0, 0, 0, 0.65)),
+    background-image:
         url("/manos.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -503,7 +514,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
+    background: rgba(0, 0, 0, 0.75);
     z-index: 0;
 }
 
@@ -947,6 +958,109 @@
     text-align: center;
     font-size: 0.85rem;
     color: #6c757d;
+}
+
+/* seccion contacto */
+.main-page-seccion-contacto .container {
+    height: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+}
+
+.main-page-seccion-contacto {
+    background-image:
+        url("/fondo-contacto.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--text-dark);
+
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.main-page-seccion-contacto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 0;
+}
+
+.main-page-seccion-contacto>* {
+    position: relative;
+    z-index: 1;
+}
+
+
+.main-page-seccion-contacto .section-title {
+    font-size: 3.5rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #eee;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.main-page-seccion-contacto .contacto-subtitulo {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    /* Un gris muy claro es mejor que #ccc sobre negro */
+    font-weight: 400;
+    margin-bottom: 3rem;
+    max-width: 700px;
+
+
+}
+
+
+.main-page-seccion-contacto .contacto-extra-info {
+    margin-top: 50px;
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+
+    justify-content: center;
+}
+
+.main-page-seccion-contacto .info-item {
+    color: #ffffff;
+
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.1);
+
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(5px);
+}
+
+.btn-whatsapp-gigante {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.main-page-seccion-contacto .contacto-extra-info {
+    color: var(--bg-light);
 }
 
 /* Responsive para móviles */

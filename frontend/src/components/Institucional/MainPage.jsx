@@ -6,31 +6,43 @@ import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import EmailIcon from '@mui/icons-material/Email';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 export const MainPage = () => {
+
+    const handleScroll = (e, id) => {
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
         <div className="main-page-container">
             <header className="main-page-header">
                 <div className="main-page-header-container">
                     <nav>
-                        <img src="../logoNuevo2.png" className="imagen-logo" alt="Logo BG Ingeniería" />
+                        <img src="../logoNuevo2.png" className="imagen-logo" alt="Logo BG Ingeniería" onClick={(e) => handleScroll(e, 'main-page-seccion-principal')} />
                         <ul>
-                            <li><a href="#nosotros">Nosotros</a></li>
-                            <li><a href="#servicios">Servicios</a></li>
-                            <li><a href="#saneamiento">Saneamiento</a></li>
-                            <li><a href="#renovables">Energía</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-quienes-somos')}>Nosotros</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-que-hacemos')}>Qué hacemos</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-como-hacemos')}>Como lo hacemos</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-mercados')}>Clientes</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-nuestros-proyectos')}>Nuestros proyectos</a></li>
+                            <li><a style={{ color: 'var(--accent-color)' }} onClick={(e) => handleScroll(e, 'contacto')}>Contactanos</a></li>
 
-                            <li><a href="#contacto" className="btn-contacto">Contactanos</a></li>
                         </ul>
                     </nav>
                 </div>
             </header>
             <main className="main-page-main">
-                <section className='main-page-seccion-principal'>
+                <section id='main-page-seccion-principal' className='main-page-seccion-principal'>
                     <img src="../logo-seccion-principal-2.png" className="imagen-logo" alt="Logo BG Ingeniería" />
                     <span className="slogan-logo-seccion-principal">Servicios de ingeniería, obra civil y consultoría ambiental</span>
                 </section>
-                <section className="main-page-seccion-1">
+                <section id='main-page-seccion-quienes-somos' className="main-page-seccion-1">
                     <div className="content">
                         <h2>¿Quiénes somos?</h2>
                         <div className='quienes-somos-container'>
@@ -80,7 +92,7 @@ export const MainPage = () => {
                     </div>
                 </section>
 
-                <section className="main-page-seccion-2">
+                <section id='main-page-seccion-que-hacemos' className="main-page-seccion-2">
 
                     <div className="container">
                         <h2 className="section-title">Qué hacemos</h2>
@@ -125,7 +137,7 @@ export const MainPage = () => {
                     </div>
                 </section>
 
-                <section className="main-page-seccion-3">
+                <section id='main-page-seccion-mercados' className="main-page-seccion-3">
                     <div className="container">
                         <h2 className="section-title">Mercados</h2>
 
@@ -154,7 +166,7 @@ export const MainPage = () => {
                     </div>
                 </section>
 
-                <section className="main-page-seccion-4">
+                <section id='main-page-seccion-como-hacemos' className="main-page-seccion-4">
                     <div className="container">
                         <h2 className="section-title">CÓMO LO HACEMOS</h2>
 
@@ -203,7 +215,7 @@ export const MainPage = () => {
                     </div>
                 </section>
 
-                <section className="main-page-seccion-5">
+                <section id='main-page-nuestros-proyectos' className="main-page-seccion-5">
                     <div className="container">
                         <h2 className="section-title">Nuestros proyectos</h2>
 
@@ -294,6 +306,38 @@ export const MainPage = () => {
                                 </div>
                             </div>
 
+                        </div>
+                    </div>
+                </section>
+                <section id="contacto" className="main-page-seccion-contacto">
+                    <div className="container">
+                        <div className="contacto-card">
+                            <h2 className="section-title">¿Listo para comenzar?</h2>
+                            <p className="contacto-subtitulo">
+                                Estamos disponibles para asesorarte en tu próximo proyecto de ingeniería o energía renovable.
+                                <br />
+                                <strong>Escríbenos ahora para una respuesta rápida.</strong>
+                            </p>
+                            <a
+                                href="https://wa.me/5493424061382?text=Hola,%20quisiera%20asesoramiento%20sobre..."
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn-whatsapp-gigante"
+                            >
+                                <WhatsAppIcon style={{ fontSize: 40 }} />
+                                <span>Iniciar Chat por WhatsApp</span>
+                            </a>
+
+                            <div className="contacto-extra-info">
+                                <div className="info-item">
+                                    <EmailIcon className="icon-small" />
+                                    <span>info@bgingenieria.com.ar</span>
+                                </div>
+                                <div className="info-item">
+                                    <LocationOnIcon className="icon-small" />
+                                    <span>Santa Fe Capital</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
