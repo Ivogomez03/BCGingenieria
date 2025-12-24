@@ -5,7 +5,7 @@ import { Footer } from './components/Footer';
 import { PanelProyectos } from './components/PanelProyectos';
 import { LeasingSolar } from './components/LeasingSolar';
 import { useRef } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { Login } from './components/Login'
 import { Proyecto } from './components/Proyecto';
 import { PanelAdministrador } from './components/Admin/PanelAdmin';
@@ -47,6 +47,7 @@ const MainApp = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainPage />} />
+        {/*
         <Route path="/login" element={<Login />} />
         <Route path="/home" element={<PaginaPrincipal />} />
         <Route path="/comunidadesSolares" element={<ComunidadesSolares />} />
@@ -57,7 +58,8 @@ const MainApp = () => {
         <Route path="/registrar" element={<RegistrarUsuario />} />
         <Route path="/panelBCG" element={<ProtectedRoute requiredRole="BCG"><PanelBCG /></ProtectedRoute>} />
         <Route path="/proyecto/MasInfoMariaTeresa" element={<ProtectedRoute requiredRole="USUARIO_GENERAL"><MasInfoMariaTeresa /></ProtectedRoute>} />
-
+*/}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

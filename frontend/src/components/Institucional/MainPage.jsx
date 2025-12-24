@@ -4,15 +4,30 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import SolarPowerIcon from '@mui/icons-material/SolarPower';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import EmailIcon from '@mui/icons-material/Email';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { useState } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import CloseIcon from '@mui/icons-material/Close';
+import { useCarruselFondoPrincipal } from '../../hooks/carruselFondoPrincipal';
+import { useCarruselNuestrosProyectos } from '../../hooks/carruselNuestrosProyectos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 export const MainPage = () => {
+    const [menuAbierto, setMenuAbierto] = useState(false);
+    const { indiceImagen, imagenesFondo } = useCarruselFondoPrincipal({ index: 0 });
+    const { indiceProyecto, imagenesProyectos, siguienteProyecto, anteriorProyecto } = useCarruselNuestrosProyectos({ index: 0 });
 
+    const toggleMenu = () => {
+        setMenuAbierto(!menuAbierto);
+    };
     const handleScroll = (e, id) => {
         e.preventDefault();
+        setMenuAbierto(false);
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: 'smooth' });
@@ -24,13 +39,16 @@ export const MainPage = () => {
             <header className="main-page-header">
                 <div className="main-page-header-container">
                     <nav>
-                        <img src="../logoNuevo2.png" className="imagen-logo" alt="Logo BG Ingeniería" onClick={(e) => handleScroll(e, 'main-page-seccion-principal')} />
-                        <ul>
+                        <img src="../logoNuevo2.png" className="logo" alt="Logo BG Ingeniería" onClick={(e) => handleScroll(e, 'main-page-seccion-principal')} />
+                        <div className="menu-icon" onClick={toggleMenu}>
+                            {menuAbierto ? <CloseIcon /> : <MenuIcon />}
+                        </div>
+                        <ul className={menuAbierto ? "nav-menu active" : "nav-menu"}>
                             <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-quienes-somos')}>Nosotros</a></li>
                             <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-que-hacemos')}>Qué hacemos</a></li>
                             <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-como-hacemos')}>Como lo hacemos</a></li>
-                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-mercados')}>Clientes</a></li>
                             <li><a onClick={(e) => handleScroll(e, 'main-page-nuestros-proyectos')}>Nuestros proyectos</a></li>
+                            <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-mercados')}>Clientes</a></li>
                             <li><a style={{ color: 'var(--accent-color)' }} onClick={(e) => handleScroll(e, 'contacto')}>Contactanos</a></li>
 
                         </ul>
@@ -39,8 +57,28 @@ export const MainPage = () => {
             </header>
             <main className="main-page-main">
                 <section id='main-page-seccion-principal' className='main-page-seccion-principal'>
-                    <img src="../logo-seccion-principal-2.png" className="imagen-logo" alt="Logo BG Ingeniería" />
-                    <span className="slogan-logo-seccion-principal">Servicios de ingeniería, obra civil y consultoría ambiental</span>
+
+                    <div className="fondo-slideshow">
+                        {imagenesFondo.map((img, index) => (
+                            <div
+                                key={index}
+                                className={`slide-bg ${index === indiceImagen ? 'active' : ''}`}
+                                style={{ backgroundImage: `url(${img})` }}
+                            ></div>
+                        ))}
+                        <div className="overlay-oscura"></div>
+                    </div>
+
+                    <div className="contenido-principal">
+                        <img src="../logo-seccion-principal-2.png" className="imagen-logo" alt="Logo BG Ingeniería" />
+                        <span className="slogan-logo-seccion-principal">
+                            Servicios de ingeniería
+                            <h4>Saneamiento, consultoría y energías renovables
+                            </h4>
+                        </span>
+
+                    </div>
+
                 </section>
                 <section id='main-page-seccion-quienes-somos' className="main-page-seccion-1">
                     <div className="content">
@@ -52,7 +90,7 @@ export const MainPage = () => {
                                     BG Ingeniería brinda <span className="texto-destacado">soluciones integrales</span> de ingeniería en
                                     <span className="texto-destacado"> saneamiento, ambiente y energía renovable</span>,
                                     combinando conocimiento técnico y del territorio para ofrecer
-                                    <span className="texto-destacado">respuestas eficientes, sostenibles y confiables</span>
+                                    <span className="texto-destacado"> respuestas eficientes, sostenibles y confiables </span>
                                     a empresas, organizaciones, municipios y comunidades.
 
                                 </p>
@@ -100,6 +138,9 @@ export const MainPage = () => {
                         <div className="areas-grid">
                             {/* Saneamiento */}
                             <article className="area-card">
+
+                                <WaterDropIcon style={{ color: 'var(--accent-color)' }} />
+
                                 <h3>Obras de saneamiento y efluentes industriales</h3>
                                 <ul>
                                     <li>Redes de agua potable, cloacas y desagües pluviales</li>
@@ -112,6 +153,7 @@ export const MainPage = () => {
 
                             {/* Gestión ambiental */}
                             <article className="area-card">
+                                <PublicIcon style={{ color: 'var(--accent-color)' }} />
                                 <h3>Gestión ambiental y recursos hídricos</h3>
                                 <ul>
                                     <li>Estudios de impacto ambiental e hídrico</li>
@@ -124,6 +166,7 @@ export const MainPage = () => {
 
                             {/* Energías renovables */}
                             <article className="area-card">
+                                <WbSunnyIcon style={{ color: 'var(--accent-color)' }} />
                                 <h3>Energías renovables</h3>
                                 <ul>
                                     <li>Sistemas on grid, off grid e híbridos</li>
@@ -137,9 +180,85 @@ export const MainPage = () => {
                     </div>
                 </section>
 
+
+
+                <section id='main-page-seccion-como-hacemos' className="main-page-seccion-4">
+                    <div className="container">
+                        <h2 className="section-title">CÓMO LO HACEMOS</h2>
+
+                        <div className="intro-block">
+                            <p>
+                                Adoptamos un enfoque integral: desde el diagnóstico hasta la puesta en marcha,
+                                abarcando diseño, ingeniería, ejecución y seguimiento. Garantizamos un servicio
+                                completo <span className="texto-destacado">“llave en mano”</span>.
+                            </p>
+                        </div>
+
+                        <div className="pilares-grid">
+
+                            <div className="pilar-card">
+
+                                <h3>Garantía de entrega</h3>
+                                <p>Nos comprometemos a cumplir con los plazos y estándares. Cada proyecto es ejecutado con rigor, transparencia y control.</p>
+                            </div>
+
+                            <div className="pilar-card">
+
+                                <h3>Sustentabilidad</h3>
+                                <p>Eficiencia energética, uso responsable de recursos y minimización del impacto ambiental desde la concepción del proyecto.</p>
+                            </div>
+
+                            <div className="pilar-card">
+
+                                <h3>Innovación</h3>
+                                <p>Tecnologías modernas, materiales como PRFV y acero inoxidable, y metodologías avanzadas de modelación.</p>
+                            </div>
+
+                            <div className="pilar-card">
+
+                                <h3>Transición energética</h3>
+                                <p>Promovemos energías renovables y sistemas eficientes para reducir la huella ambiental hacia un modelo sostenible.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+
+                <section id='main-page-nuestros-proyectos' className="main-page-seccion-5">
+                    <div className="container">
+                        <h2 className="section-title">Nuestros proyectos</h2>
+                        <div className='proyectos-galeria'>
+                            <div className="flecha-carrusel flecha-izquierda" onClick={anteriorProyecto}>
+                                <ArrowBackIosNewIcon />
+                            </div>
+                            {
+                                imagenesProyectos.map((obj, index) => (
+                                    <div key={index} style={{ backgroundImage: `url(${obj.urlImg})` }} className={`slide-bg ${index === indiceProyecto ? 'active' : ''}`}>
+                                        <div className="info-proyecto">
+                                            <h3>{obj.nombreProyecto}</h3>
+                                            {obj.potenciaInstalada && (
+                                                <p className="potencia">
+                                                    <i className="fa-solid fa-bolt"></i> Potencia: {obj.potenciaInstalada} kW
+                                                </p>
+                                            )}
+                                            <span className="ubicacion">
+                                                <i className="fa-solid fa-location-dot"></i> {obj.ubicacion}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                            <div className="flecha-carrusel flecha-derecha" onClick={siguienteProyecto}>
+                                <ArrowForwardIosIcon />
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
                 <section id='main-page-seccion-mercados' className="main-page-seccion-3">
                     <div className="container">
-                        <h2 className="section-title">Mercados</h2>
+                        <h2 className="section-title">Clientes</h2>
 
                         <div className="mercados-grid">
                             <div className="mercado-item">
@@ -165,150 +284,6 @@ export const MainPage = () => {
                         </div>
                     </div>
                 </section>
-
-                <section id='main-page-seccion-como-hacemos' className="main-page-seccion-4">
-                    <div className="container">
-                        <h2 className="section-title">CÓMO LO HACEMOS</h2>
-
-                        <div className="intro-block">
-                            <p>
-                                Adoptamos un enfoque integral: desde el diagnóstico hasta la puesta en marcha,
-                                abarcando diseño, ingeniería, ejecución y seguimiento. Garantizamos un servicio
-                                completo <span className="texto-destacado">“llave en mano”</span>.
-                            </p>
-                        </div>
-
-                        <div className="pilares-grid">
-
-                            <div className="pilar-card">
-                                <div className="icon-box">
-                                    <i className="fa-solid fa-clipboard-check"></i> </div>
-                                <h3>Garantía de entrega</h3>
-                                <p>Nos comprometemos a cumplir con los plazos y estándares. Cada proyecto es ejecutado con rigor, transparencia y control.</p>
-                            </div>
-
-                            <div className="pilar-card">
-                                <div className="icon-box">
-                                    <i className="fa-solid fa-leaf"></i>
-                                </div>
-                                <h3>Sustentabilidad</h3>
-                                <p>Eficiencia energética, uso responsable de recursos y minimización del impacto ambiental desde la concepción del proyecto.</p>
-                            </div>
-
-                            <div className="pilar-card">
-                                <div className="icon-box">
-                                    <i className="fa-solid fa-microchip"></i>
-                                </div>
-                                <h3>Innovación</h3>
-                                <p>Tecnologías modernas, materiales como PRFV y acero inoxidable, y metodologías avanzadas de modelación.</p>
-                            </div>
-
-                            <div className="pilar-card">
-                                <div className="icon-box">
-                                    <i className="fa-solid fa-solar-panel"></i>
-                                </div>
-                                <h3>Transición energética</h3>
-                                <p>Promovemos energías renovables y sistemas eficientes para reducir la huella ambiental hacia un modelo sostenible.</p>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
-
-                <section id='main-page-nuestros-proyectos' className="main-page-seccion-5">
-                    <div className="container">
-                        <h2 className="section-title">Nuestros proyectos</h2>
-
-                        <div className="proyectos-grid">
-
-                            <div className="columna-proyecto">
-                                <div className="cat-header">
-                                    <i className="fa-solid fa-faucet-drip"></i>
-                                    <h3>Obras de Saneamiento</h3>
-                                </div>
-                                <div className="lista-obras">
-                                    <div className="obra-item">
-                                        <h4>Planta Tratamiento Agua Potable</h4>
-                                        <p className="detalle">Sistema Biológico Hierro/Manganeso. Montaje civil y electromecánico.</p>
-                                        <span className="ubicacion"><i className="fa-solid fa-location-dot"></i> Monte Vera (BioCis IDEAR UNR)</span>
-                                    </div>
-                                    <div className="obra-item">
-                                        <h4>Red de Distribución y Optimización</h4>
-                                        <p className="detalle">Dirección y ejecución de obra.</p>
-                                        <span className="ubicacion"><i className="fa-solid fa-location-dot"></i> Santa Clara de Saguier</span>
-                                    </div>
-                                    <div className="obra-item">
-                                        <h4>Planta de Cloración PLC ASSA</h4>
-                                        <p className="detalle">Dirección y ejecución de obra.</p>
-                                        <span className="ubicacion"><i className="fa-solid fa-location-dot"></i> Gálvez</span>
-                                    </div>
-                                    <div className="obra-item">
-                                        <h4>Red de Agua Potable</h4>
-                                        <p className="detalle">Captación, impulsión, tratamiento y distribución.</p>
-                                        <span className="ubicacion"><i className="fa-solid fa-location-dot"></i> Colonia San José</span>
-                                    </div>
-                                    <div className="obra-item">
-                                        <h4>Extensión Red Barrio Jesuitas</h4>
-                                        <p className="detalle">Extensión de la red de agua potable.</p>
-                                        <span className="ubicacion"><i className="fa-solid fa-location-dot"></i> Ciudad de Santa Fe</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="columna-proyecto">
-                                <div className="cat-header">
-                                    <i className="fa-solid fa-seedling"></i>
-                                    <h3>Gestión Ambiental</h3>
-                                </div>
-                                <ul className="lista-ambiental">
-                                    <li>Estudios de Impacto Ambiental (urbanizaciones, loteos e industrias).</li>
-                                    <li>Estudios hídricos y Planes de Gestión.</li>
-                                    <li>Sistemas ISO 14001 y Certificaciones Sostenibles.</li>
-                                    <li>Huella de Carbono y Carbono Neutralidad.</li>
-                                    <li>Diseño de Plantas de Reciclado y Rellenos Sanitarios.</li>
-                                    <li>Recuperación de áreas degradadas.</li>
-                                </ul>
-                            </div>
-
-                            <div className="columna-proyecto">
-                                <div className="cat-header">
-                                    <i className="fa-solid fa-solar-panel"></i>
-                                    <h3>Energías Renovables</h3>
-                                </div>
-                                <div className="lista-energia">
-
-                                    <div className="energia-card">
-                                        <div className="energia-tag">ETAPA II</div>
-                                        <h4>Comunidad Solar</h4>
-                                        <p>Dirección técnica y planificación modelo económico asociativo.</p>
-                                        <span className="ubicacion">María Teresa</span>
-                                    </div>
-
-                                    <div className="energia-card highlight">
-                                        <div className="metrics">
-                                            <span className="big-number">7 KW</span>
-                                            <span className="sub-metric">Colaborativo</span>
-                                        </div>
-                                        <h4>Sistema fotovoltaico colaborativo</h4>
-                                        <p>3 vecinos conectados al sistema.</p>
-                                        <span className="ubicacion">Rafaela</span>
-                                    </div>
-
-                                    <div className="energia-card highlight">
-                                        <div className="metrics">
-                                            <span className="big-number">20 KW</span>
-                                            <span className="sub-metric">80% Ahorro</span>
-                                        </div>
-                                        <h4>Empresa Lazzaroni</h4>
-                                        <span className="ubicacion">Ceres</span>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </section>
                 <section id="contacto" className="main-page-seccion-contacto">
                     <div className="container">
                         <div className="contacto-card">
@@ -324,14 +299,14 @@ export const MainPage = () => {
                                 rel="noopener noreferrer"
                                 className="btn-whatsapp-gigante"
                             >
-                                <WhatsAppIcon style={{ fontSize: 40 }} />
-                                <span>Iniciar Chat por WhatsApp</span>
+                                <WhatsAppIcon style={{ fontSize: '25px' }} />
+                                <span style={{ fontSize: '0.9rem' }}>Iniciar Chat por WhatsApp</span>
                             </a>
 
                             <div className="contacto-extra-info">
                                 <div className="info-item">
                                     <EmailIcon className="icon-small" />
-                                    <span>info@bgingenieria.com.ar</span>
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@bgingenieria.com&su=Asesoría BG Ingeniería&body=Hola solicito asesoría acerca de..."><span>contacto@bgingenieria.com</span></a>
                                 </div>
                                 <div className="info-item">
                                     <LocationOnIcon className="icon-small" />
@@ -341,6 +316,7 @@ export const MainPage = () => {
                         </div>
                     </div>
                 </section>
+
             </main>
             <footer className="main-page-footer">
                 <div className="container">
@@ -354,10 +330,13 @@ export const MainPage = () => {
                         <div className="footer-col links-col">
                             <h3>Navegación</h3>
                             <ul>
-                                <li><a href="#">Inicio</a></li>
-                                <li><a href="#">Servicios</a></li>
-                                <li><a href="#">Proyectos</a></li>
-                                <li><a href="#">Nosotros</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-principal')}>Inicio</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-quienes-somos')}>Nosotros</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-que-hacemos')}>Qué hacemos</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-como-hacemos')}>Como lo hacemos</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-seccion-mercados')}>Clientes</a></li>
+                                <li><a onClick={(e) => handleScroll(e, 'main-page-nuestros-proyectos')}>Nuestros proyectos</a></li>
+
                             </ul>
                         </div>
 
@@ -365,16 +344,17 @@ export const MainPage = () => {
                             <h3>Contacto</h3>
                             <ul className="contact-list">
                                 <li>
-                                    <i className="fa-solid fa-location-dot"></i>
-                                    <span>Av. Principal 1234, Rafaela, Santa Fe</span>
+                                    <LocationOnIcon style={{ fontSize: '15px' }} className="icon-small" />
+                                    <span>Velez Sarsfield 3256, Santa Fe</span>
                                 </li>
                                 <li>
-                                    <i className="fa-solid fa-envelope"></i>
-                                    <a href="mailto:info@bgingenieria.com.ar">info@bgingenieria.com.ar</a>
+                                    <EmailIcon style={{ fontSize: '15px' }} className="icon-small" />
+                                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contacto@bgingenieria.com&su=Asesoría BG Ingeniería&body=Hola solicito asesoría acerca de...">contacto@bgingenieria.com</a>
                                 </li>
                                 <li>
-                                    <i className="fa-brands fa-whatsapp"></i>
-                                    <a href="https://wa.me/5493492000000">+54 9 3492 00-0000</a>
+
+                                    <WhatsAppIcon style={{ fontSize: '15px' }} />
+                                    <a href="https://wa.me/5493424061382">+54 9 342 4061382</a>
                                 </li>
                             </ul>
                         </div>
@@ -382,19 +362,35 @@ export const MainPage = () => {
                         <div className="footer-col social-col">
                             <h3>Síguenos</h3>
                             <div className="social-icons">
-                                <a href="#" className="social-link"><LinkedInIcon className='icon-footer' /></a>
-                                <a href="#" className="social-link"><InstagramIcon className='icon-footer' /></a>
-                                <a href="#" className="social-link"><FacebookIcon className='icon-footer' /></a>
+                                <a href="https://www.linkedin.com/company/bgingenieria/" className="social-link"><LinkedInIcon className='icon-footer' /></a>
+                                <a href="https://www.instagram.com/bg.ingenieria/" className="social-link"><InstagramIcon className='icon-footer' /></a>
+                                {/*<a href="" className="social-link"><FacebookIcon className='icon-footer' /></a>*/}
                             </div>
+                        </div>
+
+                        <div className="footer-col miembro-col">
+                            <h3>Somos miembro de:</h3>
+                            <div >
+                                <img src="./camarco.png" alt="Camarco logo" style={{ width: '100px' }} />
+                            </div>
+
                         </div>
 
                     </div>
 
                     <div className="footer-bottom">
-                        <p>&copy; 2025 BG Ingeniería. Todos los derechos reservados.</p>
+                        <p style={{ fontSize: '13px' }}>&copy; 2025 BG Ingeniería. Todos los derechos reservados.</p>
                     </div>
                 </div>
             </footer>
-        </div>
+            <a
+                href="https://wa.me/5493424061382?text=Hola,%20quisiera%20asesoramiento%20sobre..."
+                className="btn-wsp-flotante"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <WhatsAppIcon style={{ fontSize: 40 }} />
+            </a>
+        </div >
     );
 };
